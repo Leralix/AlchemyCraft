@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" />
     </modules>
   </component>
 </project>

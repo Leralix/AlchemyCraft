@@ -1,12 +1,24 @@
 package org.leralix.alchemycraft;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.leralix.alchemycraft.commands.CommandManager;
+import org.leralix.alchemycraft.commands.DebugCommandManager;
+
+import java.util.Objects;
+import java.util.logging.Logger;
 
 public final class AlchemyCraft extends JavaPlugin {
 
+    private static AlchemyCraft plugin;
+    static Logger logger;
     @Override
     public void onEnable() {
-        // Plugin startup logic
+        plugin = this;
+        logger = this.getLogger();
+
+        Objects.requireNonNull(getCommand("tan")).setExecutor(new CommandManager());
+        Objects.requireNonNull(getCommand("tandebug")).setExecutor(new DebugCommandManager());
+
 
     }
 
@@ -15,7 +27,12 @@ public final class AlchemyCraft extends JavaPlugin {
         // Plugin shutdown logic
     }
 
-    public static AlchemyCraft getPlugin(){
-        return this;
+    public static AlchemyCraft getPlugin() {
+        return plugin;
     }
+
+    public static Logger getPluginLogger() {
+        return logger;
+    }
+
 }

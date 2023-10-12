@@ -31,7 +31,7 @@ public class CustomCrafts {
         ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName("Custom Sword");
-        meta.setCustomModelData(1); // Set the custom model data. The model should be defined in your resource pack.
+        //meta.setCustomModelData(1); // Set the custom model data. The model should be defined in your resource pack.
 
         item.setItemMeta(meta);
         return item;
