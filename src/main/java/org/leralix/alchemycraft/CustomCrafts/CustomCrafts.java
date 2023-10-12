@@ -1,5 +1,7 @@
 package org.leralix.alchemycraft.CustomCrafts;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -30,7 +32,7 @@ public class CustomCrafts {
         ItemStack item = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta meta = item.getItemMeta();
 
-        meta.setDisplayName("Custom Sword");
+        meta.displayName(Component.text("Custom Sword").color(NamedTextColor.AQUA));
         //meta.setCustomModelData(1); // Set the custom model data. The model should be defined in your resource pack.
 
         item.setItemMeta(meta);

@@ -1,6 +1,7 @@
 package org.leralix.alchemycraft;
 
 import org.bukkit.plugin.java.JavaPlugin;
+import org.leralix.alchemycraft.CustomCrafts.CustomCrafts;
 import org.leralix.alchemycraft.commands.CommandManager;
 import org.leralix.alchemycraft.commands.DebugCommandManager;
 
@@ -19,6 +20,7 @@ public final class AlchemyCraft extends JavaPlugin {
         Objects.requireNonNull(getCommand("tan")).setExecutor(new CommandManager());
         Objects.requireNonNull(getCommand("tandebug")).setExecutor(new DebugCommandManager());
 
+        CustomCrafts.createCustomRecipe("custom_sword_test", CustomCrafts.getCustomItem());
 
     }
 

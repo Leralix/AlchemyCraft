@@ -2,6 +2,7 @@ package org.leralix.alchemycraft.commands;
 
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
 import org.leralix.alchemycraft.commands.subcommands.InvitePlayerCommand;
 
 import java.util.ArrayList;
@@ -12,12 +13,11 @@ public class CommandManager implements CommandExecutor, TabExecutor, TabComplete
     private final ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public CommandManager(){
-
         subCommands.add(new InvitePlayerCommand());
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
 
         if (sender instanceof Player p){
 
@@ -42,7 +42,11 @@ public class CommandManager implements CommandExecutor, TabExecutor, TabComplete
     }
 
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
+    public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
+        return TabCompleter(sender, args, subCommands);
+    }
+
+    static List<String> TabCompleter(@NotNull CommandSender sender, String[] args, ArrayList<SubCommand> subCommands) {
         List<String> suggestions = new ArrayList<>();
 
         if(args.length == 1) {

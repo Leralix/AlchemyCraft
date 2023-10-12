@@ -1,6 +1,5 @@
 package org.leralix.alchemycraft.Lang;
-import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.ChatColor;
+
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.leralix.alchemycraft.AlchemyCraft;
 
@@ -21,7 +20,9 @@ public enum Lang {
         File langFolder = new File(AlchemyCraft.getPlugin().getDataFolder(), "lang");
 
         if (!langFolder.exists()) {
-            langFolder.mkdir();
+            if(!langFolder.mkdir()){
+                AlchemyCraft.getPluginLogger().warning("Could not create lang folder");
+            }
         }
 
         File file = new File(langFolder, filename);
@@ -46,7 +47,7 @@ public enum Lang {
 
     public String getTranslation() {
         String translation = translations.get(this);
-        if (translation != null) {
+        if(translation != null) {
             //return ChatColor.translateAlternateColorCodes('§', translation);
         }
         return null;
