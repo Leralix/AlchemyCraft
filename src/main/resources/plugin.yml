@@ -1,0 +1,4 @@
+name: AlchemyCraft
+version: '${version}'
+main: org.leralix.alchemycraft.AlchemyCraft
+api-version: '1.20'
