@@ -10,7 +10,8 @@ import java.util.Map;
 public enum Lang {
     WELCOME,
     LANGUAGE_SUCCESSFULLY_LOADED,
-    PLUGIN_STRING;
+    PLUGIN_STRING,
+    HASHMAP_ERROR;
 
 
     private static final Map<Lang, String> translations = new HashMap<>();

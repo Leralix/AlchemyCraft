@@ -3,3 +3,5 @@ language:
   WELCOME: "Welcome"
   LANGUAGE_SUCCESSFULLY_LOADED: "English language successfully loaded"
   PLUGIN_STRING: "§a[AC]"
+
+  HASHMAP_ERROR: "Hashmap error"

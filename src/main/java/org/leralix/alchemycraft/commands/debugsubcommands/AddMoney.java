@@ -21,11 +21,6 @@ public class AddMoney extends SubCommand {
     }
 
     @Override
-    public int getArguments() {
-        return 2;
-    }
-
-    @Override
     public String getSyntax() {
         return "/tandebug addmoney <player> <amount>";
     }

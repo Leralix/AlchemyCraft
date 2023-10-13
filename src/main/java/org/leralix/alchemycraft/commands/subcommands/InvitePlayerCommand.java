@@ -20,7 +20,6 @@ public class InvitePlayerCommand extends SubCommand {
     public String getDescription() {
         return "null";
     }
-    public int getArguments(){ return 2;}
     @Override
     public String getSyntax() {
         return "/tan invite <playerName>";
