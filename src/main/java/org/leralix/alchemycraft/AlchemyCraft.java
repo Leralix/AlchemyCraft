@@ -21,8 +21,11 @@ public final class AlchemyCraft extends JavaPlugin {
     private static DropManager dropManager;
     @Override
     public void onEnable() {
+
         plugin = this;
         logger = this.getLogger();
+
+        logger.info("------------------Alchemy Craft--------------------");
 
         Objects.requireNonNull(getCommand("alch")).setExecutor(new CommandManager());
         Objects.requireNonNull(getCommand("alchdebug")).setExecutor(new DebugCommandManager());
@@ -38,6 +41,7 @@ public final class AlchemyCraft extends JavaPlugin {
         dropManager = new DropManager();
 
         logger.info("fin de test");
+        logger.info("------------------Alchemy Craft--------------------");
 
     }
 

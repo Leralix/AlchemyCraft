@@ -3,10 +3,24 @@ version: '${version}'
 main: org.leralix.alchemycraft.AlchemyCraft
 api-version: '1.20'
 
+commands:
+  alch:
+    description: base command of AlchemyCraft
+    permission: alchemyCraft.base
+    usage: /<command>
+  alchdebug:
+    description: debug command of AlchemyCraft
+    permission: alchemyCraft.admin
+    usage: /<command>
+
+
+
+
 permissions:
   alchemyCraft.admin:
     description: Admin permissions   for AlchemyCraft
     default: op
-  alchemyCraft.*:
+  alchemyCraft.base:
     description: Player permissions for AlchemyCraft
     default: true
+

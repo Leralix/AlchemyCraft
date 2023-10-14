@@ -25,7 +25,7 @@ public class TestBoat extends CustomItem {
     }
     @Override
     public List<Recipe> getRecipes() {
-        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft:testboat");
+        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycrafttestboat");
         ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, makeItemStack());
         craftingRecipe.shape("AAA", "ABA", "AAA");
         craftingRecipe.setIngredient('A', Material.IRON_INGOT);

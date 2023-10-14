@@ -27,7 +27,7 @@ public class TestBoat2 extends CustomItem {
 
         ItemManager itemManager = AlchemyCraft.getItemManager();
 
-        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft:testboat2");
+        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycrafttestboat2");
         ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, makeItemStack());
         craftingRecipe.shape("AAA", "ABA", "AAA");
 
