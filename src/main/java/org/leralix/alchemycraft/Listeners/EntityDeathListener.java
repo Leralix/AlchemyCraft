@@ -11,19 +11,19 @@ import java.util.List;
 
 public class EntityDeathListener implements Listener {
 
-    private final DropManager dropManager;
-
-    public EntityDeathListener(DropManager dropManager) {
-        this.dropManager = dropManager;
-    }
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent event) {
         EntityType entityType = event.getEntityType();
-        List<DropItem> drops = dropManager.getDrops(entityType);
+
+        List<DropItem> drops = DropManager.getDrops(entityType);
+
+
 
         for (DropItem drop : drops) {
+
             double rand = Math.random();
+
             if (rand <= drop.getDropRate()) {
                 event.getDrops().add(drop.getItem().clone());
             }

@@ -1,0 +1,36 @@
+language:
+
+  WELCOME: "Welcome"
+  LANGUAGE_SUCCESSFULLY_LOADED: "English language successfully loaded"
+  PLUGIN_STRING: "§a[AC]"
+
+  HASHMAP_ERROR: "Hashmap error"
+
+  # Items names
+
+  WATERMELON_BLOOD: "§fWatermelon Blood"
+  GOLDEN_BEETROOT: "§fGolden Beetroot"
+  GOLDEN_SOUP: "§fGolden Soup"
+  ZOMBIE_LEG: "§fZombie Leg"
+  ZOMBIE_BROTH: "§fZombie Broth"
+  ZOMBIE_ELIXIR: "§fZombie Elixir"
+  ZOMBIE_GRATIN: "§fZombie Gratin"
+  PIG_TROTTER: "§fPig's Trotter"
+  SKELETON_FLESH: "§fSkeleton Flesh"
+  GOLEM_HEART: "§fGolem Heart"
+  GROWTH_POWDER: "§fGrowth Powder"
+  CONSUMABLE_GUNPOWDER: "§fConsumable Gunpowder"
+  FUNGAL_EXPLOSIVE: "§fFungal Explosive"
+  MUSH_BOOM: "§fMush-Boom"
+  SALT: "§fSalt"
+  HERB_MIXTURE: "§fHerb Mixture"
+  INHALING_INCENSE: "§fInhaling Incense"
+  STRONG_INHALING_INCENSE: "§fStrong Inhaling Incense"
+  HIDDEN_INCENSE: "§fInhaling Incense"
+  NIGHT_PEARL: "§fNight Pearl"
+  MAGIC_SALAD: "§fMagic Salad"
+  SUSPICIOUS_BALL: "§fSuspicious Ball"
+  PHOENIX_FEATHER: "§fPhoenix Feather"
+
+
+

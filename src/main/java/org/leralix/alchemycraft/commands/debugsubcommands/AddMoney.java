@@ -39,7 +39,7 @@ public class AddMoney extends SubCommand {
     }
     @Override
     public void perform(Player player, String[] args) {
-
+        player.locale();
 
     }
 }

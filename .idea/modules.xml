@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlchemyCraft.alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AlchemyCraft.alchemycraft.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alchemycraft.test.iml" filepath="$PROJECT_DIR$/.idea/modules/alchemycraft.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" />
     </modules>
   </component>

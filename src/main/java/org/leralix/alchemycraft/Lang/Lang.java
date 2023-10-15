@@ -1,5 +1,7 @@
 package org.leralix.alchemycraft.Lang;
 
+import net.kyori.adventure.text.format.NamedTextColor;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.leralix.alchemycraft.AlchemyCraft;
 
@@ -11,7 +13,31 @@ public enum Lang {
     WELCOME,
     LANGUAGE_SUCCESSFULLY_LOADED,
     PLUGIN_STRING,
-    HASHMAP_ERROR;
+    HASHMAP_ERROR,
+    WATERMELON_BLOOD,
+    GOLDEN_BEETROOT,
+    GOLDEN_SOUP,
+    ZOMBIE_LEG,
+    ZOMBIE_BROTH,
+    ZOMBIE_ELIXIR,
+    ZOMBIE_GRATIN,
+    PIG_TROTTER,
+    SKELETON_FLESH,
+    GOLEM_HEART,
+    GROWTH_POWDER,
+    CONSUMABLE_GUNPOWDER,
+    FUNGAL_EXPLOSIVE,
+    MUSH_BOOM,
+    SALT,
+    HERB_MIXTURE,
+    INHALING_INCENSE,
+    STRONG_INHALING_INCENSE,
+    HIDDEN_INCENSE,
+    NIGHT_PEARL,
+    MAGIC_SALAD,
+    SUSPICIOUS_BALL,
+    PHOENIX_FEATHER,
+    ;
 
 
     private static final Map<Lang, String> translations = new HashMap<>();
@@ -49,7 +75,7 @@ public enum Lang {
     public String getTranslation() {
         String translation = translations.get(this);
         if(translation != null) {
-            //return ChatColor.translateAlternateColorCodes('§', translation);
+            return translation;
         }
         return null;
     }
@@ -57,7 +83,7 @@ public enum Lang {
     public String getTranslation(Object... placeholders) {
         String translation = translations.get(this);
         if (translation != null) {
-            //translation = NamedTextColor.translateAlternateColorCodes('§', translation);
+            //translation = ChatColor.translateAlternateColorCodes('§', translation);
             for (int i = 0; i < placeholders.length; i++) {
                 translation = translation.replace("{" + i + "}", placeholders[i].toString());
             }
