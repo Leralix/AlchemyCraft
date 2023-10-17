@@ -32,7 +32,7 @@ public class ZombieBroth extends CustomItem {
 
     @Override
     public List<Recipe> getRecipes() {
-        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraftzombiebroth");
+        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft_zombiebroth");
         ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, ZombieBroth.getItem());
         craftingRecipe.shape(
                 "A  ",
@@ -40,6 +40,7 @@ public class ZombieBroth extends CustomItem {
                 "C  "
         );
         craftingRecipe.setIngredient('A', Material.ROTTEN_FLESH);
+        //craftingRecipe.setIngredient('B', Material.ROTTEN_FLESH);
         craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.ZombieLeg)));
         craftingRecipe.setIngredient('C', Material.POTION);
 

@@ -1,7 +1,10 @@
 package org.leralix.alchemycraft.commands.subcommands;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.commands.SubCommand;
 
 
@@ -9,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class InvitePlayerCommand extends SubCommand {
+public class Test extends SubCommand {
     @Override
     public String getName() {
-        return "invite";
+        return "test";
     }
 
 
@@ -22,7 +25,7 @@ public class InvitePlayerCommand extends SubCommand {
     }
     @Override
     public String getSyntax() {
-        return "/tan invite <playerName>";
+        return "/alchdebug test";
     }
 
     @Override
@@ -38,6 +41,11 @@ public class InvitePlayerCommand extends SubCommand {
     @Override
     public void perform(Player player, String[] args){
 
+        ItemStack itemStack = new ItemStack(Material.IRON_SWORD);
+        ItemMeta itemMeta = itemStack.getItemMeta();
+        itemMeta.setDisplayName("item.minecraft.test.new_sword");
+        itemStack.setItemMeta(itemMeta);
+        player.getInventory().addItem(itemStack);
 
 
     }

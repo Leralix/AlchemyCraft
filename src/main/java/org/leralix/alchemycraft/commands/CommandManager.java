@@ -3,7 +3,7 @@ package org.leralix.alchemycraft.commands;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.leralix.alchemycraft.commands.subcommands.InvitePlayerCommand;
+import org.leralix.alchemycraft.commands.subcommands.Test;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class CommandManager implements CommandExecutor, TabExecutor, TabComplete
     private final ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public CommandManager(){
-        subCommands.add(new InvitePlayerCommand());
+        subCommands.add(new Test());
     }
 
     @Override

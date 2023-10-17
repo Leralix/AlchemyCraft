@@ -1,6 +1,7 @@
 package org.leralix.alchemycraft.Items.Item;
 
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -21,7 +22,9 @@ public class GoldenBeetroot extends CustomItem {
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.BEETROOT);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(Lang.ZOMBIE_LEG.getTranslation());
+        //itemMeta.displayName(Component.text("alchemy_craft.item.golden_beetroot").style(style -> style.decoration(TextDecoration.ITALIC, false)));
+        //itemMeta.setDisplayName("alchemy_craft.item.golden_beetroot");
+        itemMeta.displayName(Component.translatable("alchemy_craft.item.golden_beetroot"));
         itemMeta.setCustomModelData(101);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
@@ -32,7 +35,7 @@ public class GoldenBeetroot extends CustomItem {
     }
     @Override
     public List<Recipe> getRecipes() {
-        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraftgoldenbeetroot");
+        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft_goldenbeetroot");
         ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, getItemStack());
         craftingRecipe.shape(" A ", "ABA", " A ");
         craftingRecipe.setIngredient('A', Material.GOLD_NUGGET);

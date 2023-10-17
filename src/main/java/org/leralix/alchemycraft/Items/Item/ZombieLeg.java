@@ -12,7 +12,7 @@ import org.leralix.alchemycraft.Items.ItemData;
 import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Lang.Lang;
 
-@ItemData(name = "Zombie leg", base = Material.ROTTEN_FLESH, durability = 100, model_data = 101, version = 1)
+//@ItemData(name = "Zombie leg", base = Material.ROTTEN_FLESH, durability = 100, model_data = 101, version = 1)
 public class ZombieLeg extends CustomItem {
 
     private static ItemStack getItem() {
@@ -26,7 +26,7 @@ public class ZombieLeg extends CustomItem {
 
     public ZombieLeg(ItemKey _key){
         super(_key,getItem());
-        DropManager.registerDrop(EntityType.ZOMBIE_HORSE, new DropItem(makeItemStack(),0.5));
+        DropManager.registerDrop(EntityType.ZOMBIE_HORSE, new DropItem(getItem(),0.5));
     }
 
 }

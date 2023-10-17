@@ -15,11 +15,14 @@ public class PlayerJoinListener implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
 
-        System.out.println("test");
         player.sendMessage(Component.text().content("Hello ").append(player.get(Identity.DISPLAY_NAME).get().color(NamedTextColor.RED)));
 
-        System.out.println("test");
         player.sendMessage(Component.translatable("addServer.add"));
+        player.sendMessage(Component.translatable("text.test.language_successfully_loaded"));
+        player.sendMessage(Component.translatable().key("addServer.add"));
+        player.sendMessage(Component.translatable().key("addServer.add"));
+
+
 
 
 
