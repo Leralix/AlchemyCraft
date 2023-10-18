@@ -1,5 +1,7 @@
 package org.leralix.alchemycraft.Items.Item;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.translation.Translatable;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
@@ -21,13 +23,14 @@ public class ZombieBroth extends CustomItem {
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.POTION);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        itemMeta.setDisplayName(Lang.ZOMBIE_BROTH.getTranslation());
+        itemMeta.displayName(Component.translatable("alchemy_craft.item.zombie_broth"));
+        itemMeta.setCustomModelData(5403);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 
-    public ZombieBroth(ItemKey _key){
-        super(_key,getItem());
+    public ZombieBroth(){
+        super(ItemKey.ZombieBroth,getItem());
     }
 
     @Override

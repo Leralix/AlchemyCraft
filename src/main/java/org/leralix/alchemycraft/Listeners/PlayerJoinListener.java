@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.leralix.alchemycraft.AlchemyCraft;
 
 
 public class PlayerJoinListener implements Listener {
@@ -17,13 +18,7 @@ public class PlayerJoinListener implements Listener {
 
         player.sendMessage(Component.text().content("Hello ").append(player.get(Identity.DISPLAY_NAME).get().color(NamedTextColor.RED)));
 
-        player.sendMessage(Component.translatable("addServer.add"));
-        player.sendMessage(Component.translatable("text.test.language_successfully_loaded"));
-        player.sendMessage(Component.translatable().key("addServer.add"));
-        player.sendMessage(Component.translatable().key("addServer.add"));
-
-
-
+        event.getPlayer().discoverRecipes(AlchemyCraft.getPlugin().recipeKeys);
 
 
     }

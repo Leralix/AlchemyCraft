@@ -5,5 +5,6 @@ public enum ItemKey {
 
     GoldenBeetroot,
     ZombieLeg,
-    ZombieBroth
+    WatermelonJuice,
+    GOLEM_HEART, PIG_TROTTER, SKELETON_FLESH, ZombieBroth
 }

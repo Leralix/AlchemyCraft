@@ -22,16 +22,14 @@ public class GoldenBeetroot extends CustomItem {
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.BEETROOT);
         ItemMeta itemMeta = itemStack.getItemMeta();
-        //itemMeta.displayName(Component.text("alchemy_craft.item.golden_beetroot").style(style -> style.decoration(TextDecoration.ITALIC, false)));
-        //itemMeta.setDisplayName("alchemy_craft.item.golden_beetroot");
         itemMeta.displayName(Component.translatable("alchemy_craft.item.golden_beetroot"));
-        itemMeta.setCustomModelData(101);
+        itemMeta.setCustomModelData(5401);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 
-    public GoldenBeetroot(ItemKey _key){
-        super(_key, getItem());
+    public GoldenBeetroot(){
+        super(ItemKey.GoldenBeetroot, getItem());
     }
     @Override
     public List<Recipe> getRecipes() {

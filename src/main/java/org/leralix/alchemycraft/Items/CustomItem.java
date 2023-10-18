@@ -6,6 +6,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.Drops.DropItem;
 
+import javax.sound.midi.Receiver;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,18 +30,5 @@ public abstract class CustomItem {
         return Collections.emptyList();
     }
 
-    public ItemStack makeItemStack() {
-        ItemData itemData = this.getClass().getAnnotation(ItemData.class);
 
-        ItemStack item = new ItemStack(itemData.base());
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setCustomModelData(itemData.model_data());
-        meta.setDisplayName(ChatColor.WHITE + itemData.name());
-
-        item.setItemMeta(meta);
-        item.setDurability((short) itemData.durability());
-
-        return item;
-    }
 }
