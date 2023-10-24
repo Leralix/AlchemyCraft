@@ -1,11 +1,9 @@
 package org.leralix.alchemycraft.commands.subcommands;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
-import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.commands.SubCommand;
 
 import java.util.ArrayList;
@@ -32,7 +30,7 @@ public class getItem extends SubCommand {
         List<String> suggestions = new ArrayList<>();
         if (args.length == 2) {
 
-            for (ItemKey item : AlchemyCraft.getItemManager().getall().keySet()) {
+            for (ItemKey item : AlchemyCraft.getItemManager().getAll().keySet()) {
                 suggestions.add(item.toString());
             }
 

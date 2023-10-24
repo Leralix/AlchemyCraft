@@ -12,7 +12,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
 
-public class PotionEvent implements Listener {
+public class BrewPotionEvent implements Listener {
 
     @EventHandler
     public void customPotionItemStackClick(InventoryClickEvent event) {
@@ -29,7 +29,10 @@ public class PotionEvent implements Listener {
         ItemStack is = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
         ItemStack is2 = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
 
+        assert is != null;
         if (event.getClick() == ClickType.RIGHT && is.isSimilar(is2)) {
+            is.setAmount(is.getAmount() + 1);
+            is2.setAmount(is2.getAmount() - 1);
             return;
         }
 
@@ -50,7 +53,7 @@ public class PotionEvent implements Listener {
 
         if (type == ClickType.LEFT) {
 
-            if (is == null || (is != null && is.getType() == Material.AIR)) {
+            if (is.getType() == Material.AIR) {
 
                 p.setItemOnCursor(is);
                 inv.setItem(clickedSlot, is2);
@@ -71,7 +74,7 @@ public class PotionEvent implements Listener {
 
                 }
 
-            } else if (!compare) {
+            } else{
 
                 inv.setItem(clickedSlot, is2);
                 p.setItemOnCursor(is);
@@ -80,13 +83,12 @@ public class PotionEvent implements Listener {
 
         } else if (type == ClickType.RIGHT) {
 
-            if (is == null || (is != null && is.getType() == Material.AIR)) {
+            if (is.getType() == Material.AIR) {
 
                 p.setItemOnCursor(is);
                 inv.setItem(clickedSlot, is2);
 
-            } else if ((is != null && is.getType() != Material.AIR) &&
-                    (is2 == null || (is2 != null && is2.getType() == Material.AIR))) {
+            } else if (is.getType() != Material.AIR && is2.getType() == Material.AIR) {
 
                 ItemStack isClone = is.clone();
                 isClone.setAmount(is.getAmount() % 2 == 0 ? firstAmount - half : firstAmount - half - 1);
@@ -103,7 +105,7 @@ public class PotionEvent implements Listener {
 
                 }
 
-            } else if (!compare) {
+            } else {
 
                 inv.setItem(clickedSlot, is2);
                 p.setItemOnCursor(is);
@@ -120,7 +122,7 @@ public class PotionEvent implements Listener {
         if (recipe == null) {
             return;
         }
-        System.out.println("On lance le brew, recette : " + recipe.toString());
+        System.out.println("On lance le brew");
 
         recipe.startBrewing((BrewerInventory) inv);
 

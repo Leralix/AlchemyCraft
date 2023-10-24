@@ -3,10 +3,8 @@ package org.leralix.alchemycraft.Items;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
-import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
 import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
-import org.leralix.alchemycraft.Lang.Lang;
 
 import java.util.*;
 
@@ -46,14 +44,13 @@ public class ItemManager {
 
 
 
-    public HashMap<ItemKey, CustomItem> getall() {
+    public HashMap<ItemKey, CustomItem> getAll() {
         return items;
     }
 
     public CustomItem get(ItemKey key){
         if(items.containsKey(key))
             return items.get(key);
-        //AlchemyCraft.getPluginLogger().warning(Objects.requireNonNull(Lang.HASHMAP_ERROR.getTranslation()).());
         return null;
     }
 

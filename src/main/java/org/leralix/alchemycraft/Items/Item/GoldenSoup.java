@@ -1,3 +1,4 @@
+
 package org.leralix.alchemycraft.Items.Item;
 
 import net.kyori.adventure.text.Component;
@@ -16,38 +17,37 @@ import org.leralix.alchemycraft.Items.ItemKey;
 import java.util.List;
 
 //@ItemData(name = Lang.ZOMBIE_BROTH.getTranslation(), base = Material.POTION, durability = 10, model_data = 101, version = 1)
-public class ZombieBroth extends CustomItem {
+public class GoldenSoup extends CustomItem {
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.POTION);
+        ItemStack itemStack = new ItemStack(Material.MUSHROOM_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        Component italic_name = Component.translatable("alchemy_craft.item.zombie_broth");
+        Component italic_name = Component.translatable("alchemy_craft.item.golden_stew");
         Component name = italic_name.style(style -> style.decoration(TextDecoration.ITALIC, false));
         itemMeta.displayName(name);
 
-        itemMeta.setCustomModelData(5403);
+        itemMeta.setCustomModelData(5415);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 
-    public ZombieBroth(){
-        super(ItemKey.ZombieBroth,getItem());
+    public GoldenSoup(){
+        super(ItemKey.GoldenSoup,getItem());
     }
 
     @Override
     public List<Recipe> getRecipes() {
-        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft_zombiebroth");
-        ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, ZombieBroth.getItem());
+        NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft_golden_soup");
+        ShapedRecipe craftingRecipe = new ShapedRecipe(craftingKey, GoldenSoup.getItem());
         craftingRecipe.shape(
-                "A  ",
-                "B  ",
-                "C  "
+                "AA ",
+                "AA ",
+                "CB "
         );
-        craftingRecipe.setIngredient('A', Material.ROTTEN_FLESH);
-        //craftingRecipe.setIngredient('B', Material.ROTTEN_FLESH);
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.ZombieLeg)));
-        craftingRecipe.setIngredient('C', Material.POTION);
+        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.GoldenBeetroot)));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.WatermelonJuice)));
+        craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);
     }

@@ -10,9 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.Drops.DropItem;
 import org.leralix.alchemycraft.Drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemData;
 import org.leralix.alchemycraft.Items.ItemKey;
-import org.leralix.alchemycraft.Lang.Lang;
 
 //@ItemData(name = "Zombie leg", base = Material.ROTTEN_FLESH, durability = 100, model_data = 101, version = 1)
 public class ZombieLeg extends CustomItem {

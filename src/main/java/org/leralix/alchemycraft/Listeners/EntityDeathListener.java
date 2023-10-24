@@ -18,8 +18,6 @@ public class EntityDeathListener implements Listener {
 
         List<DropItem> drops = DropManager.getDrops(entityType);
 
-
-
         for (DropItem drop : drops) {
 
             double rand = Math.random();

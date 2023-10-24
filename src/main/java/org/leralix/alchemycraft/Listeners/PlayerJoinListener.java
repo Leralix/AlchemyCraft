@@ -15,9 +15,6 @@ public class PlayerJoinListener implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-
-        player.sendMessage(Component.text().content("Hello ").append(player.get(Identity.DISPLAY_NAME).get().color(NamedTextColor.RED)));
-
         event.getPlayer().discoverRecipes(AlchemyCraft.getPlugin().recipeKeys);
 
 

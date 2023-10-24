@@ -1,13 +1,10 @@
 package org.leralix.alchemycraft.commands.debugsubcommands;
 
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.leralix.alchemycraft.commands.SubCommand;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 

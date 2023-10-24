@@ -13,7 +13,7 @@ import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
 import org.leralix.alchemycraft.Listeners.EntityDeathListener;
 import org.leralix.alchemycraft.Listeners.PlayerJoinListener;
-import org.leralix.alchemycraft.Listeners.PotionEvent;
+import org.leralix.alchemycraft.Listeners.BrewPotionEvent;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.commands.CommandManager;
 import org.leralix.alchemycraft.commands.DebugCommandManager;
@@ -43,24 +43,20 @@ public final class AlchemyCraft extends JavaPlugin {
 
         logger.info("------------------Alchemy Craft--------------------");
 
-        logger.info("[TaN] -Loading Lang");
+        logger.info("[Alc] -Loading Lang");
         ConfigUtil.saveResource("lang.yml");
         ConfigUtil.loadCustomConfig("lang.yml");
 
         String lang = ConfigUtil.getCustomConfig("lang.yml").getString("language");
-
-
-        logger.info(lang);
         Lang.loadTranslations(lang);
         logger.info(Lang.LANGUAGE_SUCCESSFULLY_LOADED.getTranslation());
 
-
-
-
+        logger.info("[Alc] -Loading Commands");
         Objects.requireNonNull(getCommand("alch")).setExecutor(new CommandManager());
         Objects.requireNonNull(getCommand("alchdebug")).setExecutor(new DebugCommandManager());
 
 
+        logger.info("[Alc] -Loading Items & Crafts");
 
         itemManager = new ItemManager(this);
         itemManager.registerItem(new GoldenBeetroot());
@@ -81,11 +77,9 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(_salt);
         ItemManager.registerBrewing(_salt.getBrewRecipe());
 
-
-
         itemManager.applyRecipes();
 
-        dropManager = new DropManager();
+        //dropManager = new DropManager();
 
         RegisterEvents();
         giveALlRecipes();
@@ -111,7 +105,7 @@ public final class AlchemyCraft extends JavaPlugin {
     private void RegisterEvents() {
         getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new PotionEvent(), this);
+        getServer().getPluginManager().registerEvents(new BrewPotionEvent(), this);
 
     }
 

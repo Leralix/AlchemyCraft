@@ -11,5 +11,5 @@ public enum ItemKey {
     SKELETON_FLESH,
     FungalExplosive,
     GrowthPowder,
-    Salt, ZombieBroth
+    Salt, GoldenSoup, ZombieBroth
 }
