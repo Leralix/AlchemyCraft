@@ -29,8 +29,6 @@ public class BrewClock extends BukkitRunnable {
         this.before = inventory.getContents();
         this.current = time;
 
-        System.out.println(stand);
-        System.out.println(Arrays.toString(before));
         runTaskTimer(AlchemyCraft.getPlugin(), 0, 1);
     }
     @Override
@@ -77,27 +75,37 @@ public class BrewClock extends BukkitRunnable {
             inventory.setFuel(newFuel);
             // Brew recipe for each item put in
 
+            recipe.getAction().brew(inventory);
+
+
             for (int i = 0; i < 3; i++) {
                 if (inventory.getItem(i) == null || inventory.getItem(i).getType() == Material.AIR) {
                     continue;
                 }
-                System.out.println("brew qui se lance");
-                recipe.getAction().brew(inventory, inventory.getItem(i), new ItemStack(Material.CLOCK));
+                recipe.getAction().brew(inventory);
             }
+
             // Set the fuel level
             stand.setFuelLevel(stand.getFuelLevel() - recipe.getFuelCharge());
+
+            System.out.println("Fin du timer");
+
             cancel();
+            BrewRegisterer.unregisterBrewingStand(stand);
             return;
         }
 
         // If a player drags an item, fuel, or any contents, reset it
-        /*
+
+
         if (searchChanged(before, inventory.getContents(), true)) {
+            System.out.println("changed");
             cancel();
+            BrewRegisterer.unregisterBrewingStand(stand);
             return;
         }
 
-         */
+
         // Decrement, set the brewing time, and update the stand
 
         current--;
@@ -107,21 +115,27 @@ public class BrewClock extends BukkitRunnable {
     // Check if any slots were changed
     public boolean searchChanged(ItemStack[] before, ItemStack[] after, boolean mode) {
         for (int i = 0; i < before.length; i++) {
-            if ((before[i] != null && after[i] == null) || (before[i] == null && after[i] != null)) {
-                return false;
+
+
+
+            if(before[i] == null && after[i] == null) continue;
+
+            if(before[i] == null && !(after[i] == null)) return true;
+            if(!(before[i] == null) && after[i] == null) return true;
+
+            /*
+            if (mode) {
+                if (!(before[i].isSimilar(after[i]))) {
+                    continue;
+                }
             } else {
-                assert before[i] != null;
-                if (mode) {
-                    if (!before[i].isSimilar(after[i])) {
-                        return false;
-                    }
-                } else {
-                    if (!(before[i].getType() == after[i].getType())) {
-                        return false;
-                    }
+                if (!(before[i].getType() == after[i].getType())) {
+                    return true;
                 }
             }
+
+             */
         }
-        return true;
+        return false;
     }
 }

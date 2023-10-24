@@ -19,10 +19,11 @@ public abstract class CustomItemBrew extends CustomItem {
 
     public CustomItemBrew(ItemKey _key, ItemStack _itemStack) {
         super(_key, _itemStack);
-        //recipe = new BrewingRecipe (ingredient, fuel, this, perfect, fuelSet, fuelCharge);
     }
 
-    public abstract void brew(BrewerInventory inventory, ItemStack item, ItemStack ingredient);
+    public abstract void brew(BrewerInventory inventory);
+
+    public abstract BrewingRecipe getBrewRecipe();
 
 
 }

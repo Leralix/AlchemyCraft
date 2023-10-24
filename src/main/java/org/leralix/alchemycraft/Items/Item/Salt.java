@@ -2,35 +2,34 @@ package org.leralix.alchemycraft.Items.Item;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.inventory.*;
+import org.bukkit.inventory.BrewerInventory;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.leralix.alchemycraft.BrewAction.BrewAction;
 import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
 import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
 import org.leralix.alchemycraft.Items.ItemKey;
 
-public class WatermelonJuice extends CustomItemBrew {
+public class Salt extends CustomItemBrew {
 
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.POTION);
+        ItemStack itemStack = new ItemStack(Material.SUGAR);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        Component italic_name = Component.translatable("alchemy_craft.item.watermelon_juice");
+        Component italic_name = Component.translatable("alchemy_craft.item.salt");
         Component name = italic_name.style(style -> style.decoration(TextDecoration.ITALIC, false));
         itemMeta.displayName(name);
 
 
-        itemMeta.setCustomModelData(5404);
+        itemMeta.setCustomModelData(5412);
         itemStack.setItemMeta(itemMeta);
         return itemStack;
     }
 
-    public WatermelonJuice(){
-        super(ItemKey.WatermelonJuice, getItem());
+    public Salt(){
+        super(ItemKey.Salt, getItem());
     }
 
 
@@ -40,15 +39,18 @@ public class WatermelonJuice extends CustomItemBrew {
     }
 
     public BrewingRecipe getBrewRecipe() {
-        return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), new BrewAction(){
+        return new BrewingRecipe(new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.COAL), new BrewAction(){
             @Override
             public void brew(BrewerInventory inventory) {
+
+                inventory.setIngredient(new ItemStack(Material.BUCKET));
+
 
                 for (int i = 0; i < 3; i++) {
 
                     ItemStack currentItem = inventory.getItem(i);
 
-                    if(currentItem.getType() == Material.GLASS_BOTTLE){
+                    if(currentItem == null){
                         inventory.setItem(i,getItem());
                     }
                 }

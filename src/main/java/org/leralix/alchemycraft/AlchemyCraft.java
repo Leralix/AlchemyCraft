@@ -1,22 +1,14 @@
 package org.leralix.alchemycraft;
 
 
-import net.kyori.adventure.text.Component;
-import org.bukkit.Color;
-import org.bukkit.Material;
+
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.BrewerInventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.leralix.alchemycraft.BrewAction.BrewAction;
-import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
+import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
 import org.leralix.alchemycraft.Drops.DropManager;
 import org.leralix.alchemycraft.Items.Item.*;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
 import org.leralix.alchemycraft.Listeners.EntityDeathListener;
@@ -78,31 +70,16 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(new GolemHeart());
         itemManager.registerItem(new PigTrotter());
 
+        CustomItemBrew _watermelonJuice = new WatermelonJuice();
+        itemManager.registerItem(_watermelonJuice);
+        ItemManager.registerBrewing(_watermelonJuice.getBrewRecipe());
 
-        itemManager.registerItem(new WatermelonJuice());
+        itemManager.registerItem(new GrowthPowder());
+        itemManager.registerItem(new FungalExplosive());
 
-        ItemManager.registerBrewing(
-            new BrewingRecipe(new ItemStack(Material.GOLD_NUGGET),new ItemStack(Material.BLAZE_POWDER), new BrewAction(){
-                @Override
-                public void brew(BrewerInventory inventory, ItemStack item, ItemStack ingredient) {
-
-                    ItemMeta itemMeta = item.getItemMeta();
-                    itemMeta.displayName(Component.text("big name"));
-                    item.setItemMeta(itemMeta);
-
-                    if (!(item.getType() == Material.POTATO)) {
-                        return;
-                    }
-
-
-                    itemMeta.displayName(Component.text("big name - potato"));
-                    item.setItemMeta(itemMeta);
-
-                }
-            },
-            false,10,0)
-        );
-
+        CustomItemBrew _salt = new Salt();
+        itemManager.registerItem(_salt);
+        ItemManager.registerBrewing(_salt.getBrewRecipe());
 
 
 

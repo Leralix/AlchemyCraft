@@ -68,7 +68,16 @@ public class BrewingRecipe {
     public static BrewingRecipe getRecipe(BrewerInventory inventory) {
 
         for (BrewingRecipe recipe: ItemManager.getBrewItems()) {
+
+            System.out.println("Recipe: " + recipe.getIngredient().getType() + " " + recipe.getFuel().getType());
+
+
             if (inventory.getFuel() == null) {
+
+                if(recipe.getFuel() != null) {
+                    System.out.println("Manque le carburant");
+                    continue;
+                }
 
                 if (!recipe.isPerfect() && inventory.getIngredient().getType() == recipe.getIngredient().getType()) {
                     return recipe;
@@ -93,7 +102,15 @@ public class BrewingRecipe {
     }
 
     public void startBrewing(BrewerInventory inventory) {
+
+        if(BrewRegisterer.isRegistered(inventory.getHolder())) {
+            System.out.println("Already Brewing");
+            return;
+        }
+
         clock = new BrewClock(this, inventory, 400);
+        BrewRegisterer.registerBrewingStand(inventory.getHolder());
+
         clock.run();
     }
 
