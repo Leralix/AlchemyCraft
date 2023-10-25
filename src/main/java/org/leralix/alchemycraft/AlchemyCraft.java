@@ -57,8 +57,43 @@ public final class AlchemyCraft extends JavaPlugin {
         Objects.requireNonNull(getCommand("alchdebug")).setExecutor(new DebugCommandManager());
 
 
-        logger.info("[Alc] -Loading Items & Crafts");
+        logger.info("[Alc] -Loading items, crafts & events");
 
+        RegisterItems();
+        RegisterEvents();
+        giveALlRecipes();
+
+
+        logger.info("------------------Alchemy Craft--------------------");
+
+
+    }
+
+    private void giveALlRecipes() {
+        getServer().recipeIterator().forEachRemaining(recipe -> {
+            if (recipe instanceof ShapelessRecipe) {
+                ShapelessRecipe shapelessRecipe = (ShapelessRecipe) recipe;
+                recipeKeys.add(shapelessRecipe.getKey());
+            } else if (recipe instanceof ShapedRecipe) {
+                ShapedRecipe shapedRecipe = (ShapedRecipe) recipe;
+                recipeKeys.add(shapedRecipe.getKey());
+            }
+        });
+    }
+
+    @Override
+    public void onDisable() {
+        // Plugin shutdown logic
+    }
+
+    private void RegisterEvents() {
+        getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
+        getServer().getPluginManager().registerEvents(new BrewPotionEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerConsumeItem(), this);
+    }
+
+    public void RegisterItems(){
         itemManager = new ItemManager(this);
         itemManager.registerItem(new GoldenBeetroot());
         itemManager.registerItem(new ZombieLeg());
@@ -84,40 +119,10 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(new GoldenSoup());
         itemManager.registerItem(new ZombieGratin());
 
+        itemManager.registerItem(new CookedPigTrotter());
+
         itemManager.applyRecipes();
 
-
-        RegisterEvents();
-        giveALlRecipes();
-
-
-        logger.info("------------------Alchemy Craft--------------------");
-
-
-    }
-
-    private void giveALlRecipes() {
-        getServer().recipeIterator().forEachRemaining(recipe -> {
-            if (recipe instanceof ShapelessRecipe) {
-                ShapelessRecipe shapelessRecipe = (ShapelessRecipe) recipe;
-                recipeKeys.add(shapelessRecipe.getKey());
-            } else if (recipe instanceof ShapedRecipe) {
-                ShapedRecipe shapedRecipe = (ShapedRecipe) recipe;
-                recipeKeys.add(shapedRecipe.getKey());
-            }
-        });
-    }
-
-    private void RegisterEvents() {
-        getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
-        getServer().getPluginManager().registerEvents(new BrewPotionEvent(), this);
-        getServer().getPluginManager().registerEvents(new PlayerConsumeItem(), this);
-    }
-
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
     }
 
     public static AlchemyCraft getPlugin() {
