@@ -32,7 +32,7 @@ public class BrewClock extends BukkitRunnable {
     @Override
     public void run() {
         if (current == 0) {
-            System.out.println("termine");
+            //System.out.println("termine");
             // Set ingredient to 1 less than the current. Otherwise set to air
             if (inventory.getIngredient().getAmount() > 1) {
                 ItemStack is = inventory.getIngredient();
@@ -86,7 +86,7 @@ public class BrewClock extends BukkitRunnable {
             // Set the fuel level
             stand.setFuelLevel(stand.getFuelLevel() - recipe.getFuelCharge());
 
-            System.out.println("Fin du timer");
+            //System.out.println("Fin du timer");
 
             cancel();
             BrewRegisterer.unregisterBrewingStand(stand);
@@ -97,7 +97,7 @@ public class BrewClock extends BukkitRunnable {
 
 
         if (searchChanged(before, inventory.getContents(), true)) {
-            System.out.println("changed");
+            //System.out.println("changed");
             cancel();
             BrewRegisterer.unregisterBrewingStand(stand);
             return;

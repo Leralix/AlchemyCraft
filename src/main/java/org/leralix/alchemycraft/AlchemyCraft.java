@@ -12,6 +12,7 @@ import org.leralix.alchemycraft.Items.Item.*;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
 import org.leralix.alchemycraft.Listeners.EntityDeathListener;
+import org.leralix.alchemycraft.Listeners.PlayerConsumeItem;
 import org.leralix.alchemycraft.Listeners.PlayerJoinListener;
 import org.leralix.alchemycraft.Listeners.BrewPotionEvent;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
@@ -77,6 +78,9 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(_salt);
         ItemManager.registerBrewing(_salt.getBrewRecipe());
 
+        CustomItemBrew _gunpowderExplosion = new GunpowderExplosion();
+        ItemManager.registerBrewing(_gunpowderExplosion.getBrewRecipe());
+
         itemManager.registerItem(new GoldenSoup());
         itemManager.registerItem(new ZombieGratin());
 
@@ -108,7 +112,7 @@ public final class AlchemyCraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EntityDeathListener(), this);
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new BrewPotionEvent(), this);
-
+        getServer().getPluginManager().registerEvents(new PlayerConsumeItem(), this);
     }
 
     @Override

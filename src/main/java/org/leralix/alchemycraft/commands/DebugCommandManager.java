@@ -3,7 +3,6 @@ package org.leralix.alchemycraft.commands;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.leralix.alchemycraft.commands.debugsubcommands.AddMoney;
 import org.leralix.alchemycraft.commands.subcommands.Test;
 import org.leralix.alchemycraft.commands.subcommands.getItem;
 

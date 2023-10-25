@@ -11,12 +11,11 @@ import java.util.*;
 public class ItemManager {
 
     private final Plugin plugin;
-    private final HashMap<ItemKey, CustomItem> items;
+    private static final HashMap<ItemKey, CustomItem> items = new HashMap<>();
     private static final Set<BrewingRecipe> brewItems = new HashSet<>();
 
     public ItemManager(Plugin plugin) {
         this.plugin = plugin;
-        this.items = new HashMap<>();
     }
 
     public void registerItem(CustomItem item) {
@@ -42,16 +41,22 @@ public class ItemManager {
         }
     }
 
-
-
-
     public HashMap<ItemKey, CustomItem> getAll() {
         return items;
     }
 
-    public CustomItem get(ItemKey key){
+    public static CustomItem get(ItemKey key){
         if(items.containsKey(key))
             return items.get(key);
+        return null;
+    }
+
+    public static CustomItem get(ItemStack newItem){
+
+        for (CustomItem item : items.values()) {
+            if(item.itemStack.isSimilar(newItem))
+                return item;
+        }
         return null;
     }
 
@@ -59,9 +64,9 @@ public class ItemManager {
         return brewItems;
     }
 
-
-    public ItemStack getItemStack(ItemKey key){
-        return get(key).itemStack;
+    public static ItemStack getItemStack(ItemKey key){
+        return Objects.requireNonNull(get(key)).itemStack;
     }
+
 
 }

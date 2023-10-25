@@ -39,20 +39,17 @@ public class Salt extends CustomItemBrew {
     }
 
     public BrewingRecipe getBrewRecipe() {
-        return new BrewingRecipe(new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.COAL), new BrewAction(){
-            @Override
-            public void brew(BrewerInventory inventory) {
+        return new BrewingRecipe(new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.COAL), inventory -> {
 
-                inventory.setIngredient(new ItemStack(Material.BUCKET));
+            inventory.setIngredient(new ItemStack(Material.BUCKET));
 
 
-                for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
 
-                    ItemStack currentItem = inventory.getItem(i);
+                ItemStack currentItem = inventory.getItem(i);
 
-                    if(currentItem == null){
-                        inventory.setItem(i,getItem());
-                    }
+                if(currentItem == null){
+                    inventory.setItem(i,getItem());
                 }
             }
         },false,10,0);

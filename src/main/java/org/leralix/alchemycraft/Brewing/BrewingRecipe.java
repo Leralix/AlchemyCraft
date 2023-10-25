@@ -68,13 +68,13 @@ public class BrewingRecipe {
 
         for (BrewingRecipe recipe: ItemManager.getBrewItems()) {
 
-            System.out.println("Recipe: " + recipe.getIngredient().getType() + " " + recipe.getFuel().getType());
+            //System.out.println("Recipe: " + recipe.getIngredient().getType() + " " + recipe.getFuel().getType());
 
 
             if (inventory.getFuel() == null) {
 
                 if(recipe.getFuel() != null) {
-                    System.out.println("Manque le carburant");
+                    //System.out.println("Manque le carburant");
                     continue;
                 }
 
@@ -103,7 +103,7 @@ public class BrewingRecipe {
     public void startBrewing(BrewerInventory inventory) {
 
         if(BrewRegisterer.isRegistered(inventory.getHolder())) {
-            System.out.println("Already Brewing");
+            //System.out.println("Already Brewing");
             return;
         }
 

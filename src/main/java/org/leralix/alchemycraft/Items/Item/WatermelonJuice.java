@@ -3,14 +3,17 @@ package org.leralix.alchemycraft.Items.Item;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.Brewing.BrewAction;
 import org.leralix.alchemycraft.Brewing.BrewingRecipe;
 import org.leralix.alchemycraft.Brewing.CustomItemBrew;
+import org.leralix.alchemycraft.Consumable.Consumable;
 import org.leralix.alchemycraft.Items.ItemKey;
 
-public class WatermelonJuice extends CustomItemBrew {
+public class WatermelonJuice extends CustomItemBrew implements Consumable {
 
 
     private static ItemStack getItem() {
@@ -38,20 +41,21 @@ public class WatermelonJuice extends CustomItemBrew {
     }
 
     public BrewingRecipe getBrewRecipe() {
-        return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), new BrewAction(){
-            @Override
-            public void brew(BrewerInventory inventory) {
+        return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), inventory -> {
 
-                for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 3; i++) {
 
-                    ItemStack currentItem = inventory.getItem(i);
+                ItemStack currentItem = inventory.getItem(i);
 
-                    if(currentItem.getType() == Material.GLASS_BOTTLE){
-                        inventory.setItem(i,getItem());
-                    }
+                if(currentItem.getType() == Material.GLASS_BOTTLE){
+                    inventory.setItem(i,getItem());
                 }
             }
         },false,10,0);
     }
+    public void onConsume(Player player) {
+        player.addPotionEffect(PotionEffectType.SPEED.createEffect(20 * 3, 1));
 
+        player.setFoodLevel(player.getFoodLevel() + 2);
+    }
 }

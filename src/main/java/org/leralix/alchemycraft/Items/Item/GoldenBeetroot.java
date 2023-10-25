@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -42,6 +43,10 @@ public class GoldenBeetroot extends CustomItem {
         craftingRecipe.setIngredient('B', Material.BEETROOT);
 
         return List.of(craftingRecipe);
+    }
+
+    public void onConsume(Player player) {
+        player.setFoodLevel(player.getFoodLevel() + 5);
     }
 
 }
