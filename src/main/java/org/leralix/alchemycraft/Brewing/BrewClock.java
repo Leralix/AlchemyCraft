@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.BrewAction;
+package org.leralix.alchemycraft.Brewing;
 
 import org.bukkit.Material;
 import org.bukkit.block.BrewingStand;
@@ -6,8 +6,6 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.leralix.alchemycraft.AlchemyCraft;
-
-import java.util.Arrays;
 
 /*
  * Slot 0: 3 Potion Slot Far Left

@@ -30,8 +30,10 @@ public class ZombieLeg extends CustomItem {
     }
 
     public ZombieLeg(){
-        super(ItemKey.ZombieLeg,getItem());
-        DropManager.registerDrop(EntityType.ZOMBIE_HORSE, new DropItem(getItem(),0.5));
+        super(ItemKey.ZOMBIE_LEG,getItem());
+        DropManager.registerDrop(EntityType.ZOMBIE_HORSE, new DropItem(getItem(),1));
+        DropManager.registerDrop(EntityType.ZOMBIE, new DropItem(getItem(),0.2));
+
     }
 
 }

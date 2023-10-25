@@ -6,9 +6,9 @@ import org.bukkit.Material;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.leralix.alchemycraft.BrewAction.BrewAction;
-import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
-import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
+import org.leralix.alchemycraft.Brewing.BrewAction;
+import org.leralix.alchemycraft.Brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Brewing.CustomItemBrew;
 import org.leralix.alchemycraft.Items.ItemKey;
 
 public class Salt extends CustomItemBrew {
@@ -29,7 +29,7 @@ public class Salt extends CustomItemBrew {
     }
 
     public Salt(){
-        super(ItemKey.Salt, getItem());
+        super(ItemKey.SALT, getItem());
     }
 
 

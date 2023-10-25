@@ -10,7 +10,7 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
+import org.leralix.alchemycraft.Brewing.BrewingRecipe;
 
 public class BrewPotionEvent implements Listener {
 

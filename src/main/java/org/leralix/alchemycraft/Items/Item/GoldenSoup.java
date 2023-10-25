@@ -23,7 +23,7 @@ public class GoldenSoup extends CustomItem {
         ItemStack itemStack = new ItemStack(Material.MUSHROOM_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-        Component italic_name = Component.translatable("alchemy_craft.item.golden_stew");
+        Component italic_name = Component.translatable("alchemy_craft.item.golden_soup");
         Component name = italic_name.style(style -> style.decoration(TextDecoration.ITALIC, false));
         itemMeta.displayName(name);
 
@@ -33,7 +33,7 @@ public class GoldenSoup extends CustomItem {
     }
 
     public GoldenSoup(){
-        super(ItemKey.GoldenSoup,getItem());
+        super(ItemKey.GOLDEN_SOUP,getItem());
     }
 
     @Override
@@ -45,8 +45,8 @@ public class GoldenSoup extends CustomItem {
                 "AA ",
                 "CB "
         );
-        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.GoldenBeetroot)));
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.WatermelonJuice)));
+        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.GOLDEN_BEETROOT)));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.WATERMELON_JUICE)));
         craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);

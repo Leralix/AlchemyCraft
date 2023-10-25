@@ -7,7 +7,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
-import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
@@ -33,7 +32,7 @@ public class GrowthPowder extends CustomItem {
     }
 
     public GrowthPowder(){
-        super(ItemKey.GrowthPowder,getItem());
+        super(ItemKey.GROWTH_POWDER,getItem());
     }
 
     @Override

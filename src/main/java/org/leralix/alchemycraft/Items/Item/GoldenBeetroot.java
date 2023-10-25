@@ -31,7 +31,7 @@ public class GoldenBeetroot extends CustomItem {
     }
 
     public GoldenBeetroot(){
-        super(ItemKey.GoldenBeetroot, getItem());
+        super(ItemKey.GOLDEN_BEETROOT, getItem());
     }
     @Override
     public List<Recipe> getRecipes() {

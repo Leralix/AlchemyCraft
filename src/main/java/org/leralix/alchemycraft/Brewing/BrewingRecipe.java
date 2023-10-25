@@ -1,9 +1,8 @@
-package org.leralix.alchemycraft.BrewAction;
+package org.leralix.alchemycraft.Brewing;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.leralix.alchemycraft.Items.ItemManager;
 
 public class BrewingRecipe {

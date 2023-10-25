@@ -3,13 +3,16 @@ package org.leralix.alchemycraft.Items;
 public enum ItemKey {
 
 
-    GoldenBeetroot,
-    ZombieLeg,
-    WatermelonJuice,
+    GOLDEN_BEETROOT,
+    ZOMBIE_LEG,
+    WATERMELON_JUICE,
     GOLEM_HEART,
     PIG_TROTTER,
     SKELETON_FLESH,
-    FungalExplosive,
-    GrowthPowder,
-    Salt, GoldenSoup, ZombieBroth
+    FUNGAL_EXPLOSIVE,
+    GROWTH_POWDER,
+    SALT,
+    GOLDEN_SOUP,
+    ZOMBIE_ELIXIR,
+    ZOMBIE_GRATIN, ZOMBIE_BROTH
 }

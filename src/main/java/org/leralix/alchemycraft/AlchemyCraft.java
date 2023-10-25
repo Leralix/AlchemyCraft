@@ -6,7 +6,7 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
+import org.leralix.alchemycraft.Brewing.CustomItemBrew;
 import org.leralix.alchemycraft.Drops.DropManager;
 import org.leralix.alchemycraft.Items.Item.*;
 import org.leralix.alchemycraft.Items.ItemManager;
@@ -65,7 +65,7 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(new SkeletonFlesh());
         itemManager.registerItem(new GolemHeart());
         itemManager.registerItem(new PigTrotter());
-
+        itemManager.registerItem(new ZombieElixir());
         CustomItemBrew _watermelonJuice = new WatermelonJuice();
         itemManager.registerItem(_watermelonJuice);
         ItemManager.registerBrewing(_watermelonJuice.getBrewRecipe());
@@ -77,9 +77,11 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(_salt);
         ItemManager.registerBrewing(_salt.getBrewRecipe());
 
+        itemManager.registerItem(new GoldenSoup());
+        itemManager.registerItem(new ZombieGratin());
+
         itemManager.applyRecipes();
 
-        //dropManager = new DropManager();
 
         RegisterEvents();
         giveALlRecipes();

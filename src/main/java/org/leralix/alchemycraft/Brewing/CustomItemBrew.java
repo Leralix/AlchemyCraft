@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.BrewAction;
+package org.leralix.alchemycraft.Brewing;
 
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;

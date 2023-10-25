@@ -3,8 +3,8 @@ package org.leralix.alchemycraft.Items;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
-import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
-import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
+import org.leralix.alchemycraft.Brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Brewing.CustomItemBrew;
 
 import java.util.*;
 
@@ -34,6 +34,7 @@ public class ItemManager {
 
     public void applyRecipes() {
         for (CustomItem item : items.values()) {
+            System.out.println(item.key);
             List<Recipe> recipes = item.getRecipes();
             for (Recipe recipe : recipes) {
                 plugin.getServer().addRecipe(recipe);

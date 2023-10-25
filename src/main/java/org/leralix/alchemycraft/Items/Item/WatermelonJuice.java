@@ -2,14 +2,12 @@ package org.leralix.alchemycraft.Items.Item;
 
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
-import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.inventory.meta.LeatherArmorMeta;
-import org.leralix.alchemycraft.BrewAction.BrewAction;
-import org.leralix.alchemycraft.BrewAction.BrewingRecipe;
-import org.leralix.alchemycraft.BrewAction.CustomItemBrew;
+import org.leralix.alchemycraft.Brewing.BrewAction;
+import org.leralix.alchemycraft.Brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Brewing.CustomItemBrew;
 import org.leralix.alchemycraft.Items.ItemKey;
 
 public class WatermelonJuice extends CustomItemBrew {
@@ -30,7 +28,7 @@ public class WatermelonJuice extends CustomItemBrew {
     }
 
     public WatermelonJuice(){
-        super(ItemKey.WatermelonJuice, getItem());
+        super(ItemKey.WATERMELON_JUICE, getItem());
     }
 
 
