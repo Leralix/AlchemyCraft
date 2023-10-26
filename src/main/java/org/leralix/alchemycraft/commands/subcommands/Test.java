@@ -3,6 +3,7 @@ package org.leralix.alchemycraft.commands.subcommands;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.leralix.alchemycraft.commands.SubCommand;
+import org.leralix.alchemycraft.customEffect.CustomEffectsManager;
 
 
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ public class Test extends SubCommand {
     @Override
     public void perform(Player player, String[] args){
 
-
+        player.sendMessage(CustomEffectsManager.getAllEffects().toString());
 
     }
 }

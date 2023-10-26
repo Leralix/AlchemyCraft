@@ -59,7 +59,7 @@ public class GoldenSoup extends CustomItem implements Consumable {
     public void onConsume(Player player) {
         player.sendMessage(Component.text("miam"));
 
-        CustomEffectsManager.addTimedEffect(player, CustomEffectKey.MIDAS_TOUCH,15);
+        CustomEffectsManager.addTimedEffect(player, CustomEffectKey.MIDAS_TOUCH,4);
 
     }
 

@@ -3,6 +3,7 @@ package org.leralix.alchemycraft.customEffect;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -32,25 +33,25 @@ public class CustomEffectsManager {
         if(PlayersEffect.containsKey(playerName)){
             PlayersEffect.get(playerName).add(effect);
         }else{
-            PlayersEffect.put(playerName, List.of(effect));
+            PlayersEffect.put(playerName, new ArrayList<>());
+            PlayersEffect.get(playerName).add(effect);
         }
         scheduler.schedule(() -> removeEffect(player, effect), timeInSecond, TimeUnit.SECONDS);
     }
 
     public static void removeEffect(Player player, CustomEffectKey effect){
-        player.sendMessage("remove effect: " + effect.toString());
+
         String playerName = player.getUniqueId().toString();
 
+        System.out.println("test0");
         if(PlayersEffect.containsKey(playerName)){
-            player.sendMessage("same name");
-            player.sendMessage(PlayersEffect.toString());
-
             PlayersEffect.get(playerName).remove(effect);
         }
     }
 
     public static boolean hasEffect(Player player, CustomEffectKey effect){
         String playerName = player.getUniqueId().toString();
+        
         if(PlayersEffect.containsKey(playerName)){
             return PlayersEffect.get(playerName).contains(effect);
         }
@@ -58,4 +59,7 @@ public class CustomEffectsManager {
     }
 
 
+    public static Object getAllEffects() {
+        return PlayersEffect;
+    }
 }
