@@ -15,6 +15,8 @@ import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Consumable.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.customEffect.CustomEffectKey;
+import org.leralix.alchemycraft.customEffect.CustomEffectsManager;
 
 import java.util.List;
 
@@ -56,6 +58,9 @@ public class GoldenSoup extends CustomItem implements Consumable {
 
     public void onConsume(Player player) {
         player.sendMessage(Component.text("miam"));
+
+        CustomEffectsManager.addTimedEffect(player, CustomEffectKey.MIDAS_TOUCH,15);
+
     }
 
 }

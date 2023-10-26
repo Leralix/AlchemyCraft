@@ -11,10 +11,7 @@ import org.leralix.alchemycraft.Drops.DropManager;
 import org.leralix.alchemycraft.Items.Item.*;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
-import org.leralix.alchemycraft.Listeners.EntityDeathListener;
-import org.leralix.alchemycraft.Listeners.PlayerConsumeItem;
-import org.leralix.alchemycraft.Listeners.PlayerJoinListener;
-import org.leralix.alchemycraft.Listeners.BrewPotionEvent;
+import org.leralix.alchemycraft.Listeners.*;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.commands.CommandManager;
 import org.leralix.alchemycraft.commands.DebugCommandManager;
@@ -91,6 +88,7 @@ public final class AlchemyCraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
         getServer().getPluginManager().registerEvents(new BrewPotionEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerConsumeItem(), this);
+        getServer().getPluginManager().registerEvents(new PlayerEffectListener(), this);
     }
 
     public void RegisterItems(){
