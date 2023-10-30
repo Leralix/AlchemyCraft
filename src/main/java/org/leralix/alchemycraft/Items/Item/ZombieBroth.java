@@ -22,7 +22,7 @@ import java.util.List;
 public class ZombieBroth extends CustomItem implements Consumable {
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.POTION);
+        ItemStack itemStack = new ItemStack(Material.MUSHROOM_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         Component italic_name = Component.translatable("alchemy_craft.item.zombie_broth");

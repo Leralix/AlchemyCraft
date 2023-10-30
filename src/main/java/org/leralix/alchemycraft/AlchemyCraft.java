@@ -119,6 +119,10 @@ public final class AlchemyCraft extends JavaPlugin {
 
         itemManager.registerItem(new CookedPigTrotter());
 
+        itemManager.registerItem(new UncookedPlate());
+        itemManager.registerItem(new Plate());
+
+
         itemManager.applyRecipes();
 
     }
