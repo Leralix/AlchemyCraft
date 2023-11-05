@@ -17,7 +17,7 @@ import org.leralix.alchemycraft.Items.ItemKey;
 public class PigTrotter extends CustomItem implements Consumable {
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.ROTTEN_FLESH);
+        ItemStack itemStack = new ItemStack(Material.PORKCHOP);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         Component italic_name = Component.translatable("alchemy_craft.item.pig_trotter");

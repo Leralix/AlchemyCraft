@@ -17,7 +17,7 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
 
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.POTION);
+        ItemStack itemStack = new ItemStack(Material.SUSPICIOUS_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         Component italic_name = Component.translatable("alchemy_craft.item.watermelon_juice");

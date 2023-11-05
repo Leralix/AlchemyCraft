@@ -10,7 +10,10 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.PotionMeta;
+import org.bukkit.potion.PotionData;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.potion.PotionType;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Consumable.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
@@ -22,10 +25,10 @@ import java.util.List;
 public class ZombieElixir extends CustomItem implements Consumable {
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.POTION);
+        ItemStack itemStack = new ItemStack(Material.SUSPICIOUS_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
-            Component italic_name = Component.translatable("alchemy_craft.item.zombie_elixir");
+        Component italic_name = Component.translatable("alchemy_craft.item.zombie_elixir");
         Component name = italic_name.style(style -> style.decoration(TextDecoration.ITALIC, false));
         itemMeta.displayName(name);
 

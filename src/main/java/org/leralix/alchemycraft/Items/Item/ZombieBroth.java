@@ -22,7 +22,7 @@ import java.util.List;
 public class ZombieBroth extends CustomItem implements Consumable {
 
     private static ItemStack getItem() {
-        ItemStack itemStack = new ItemStack(Material.MUSHROOM_STEW);
+        ItemStack itemStack = new ItemStack(Material.SUSPICIOUS_STEW);
         ItemMeta itemMeta = itemStack.getItemMeta();
 
         Component italic_name = Component.translatable("alchemy_craft.item.zombie_broth");
@@ -48,9 +48,8 @@ public class ZombieBroth extends CustomItem implements Consumable {
                 "C  "
         );
         craftingRecipe.setIngredient('A', Material.ROTTEN_FLESH);
-        //craftingRecipe.setIngredient('B', Material.ROTTEN_FLESH);
         craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.ZOMBIE_LEG)));
-        craftingRecipe.setIngredient('C', Material.POTION);
+        craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);
     }
