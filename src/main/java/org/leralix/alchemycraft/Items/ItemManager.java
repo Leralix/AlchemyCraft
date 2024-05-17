@@ -10,13 +10,9 @@ import java.util.*;
 
 public class ItemManager {
 
-    private final Plugin plugin;
     private static final HashMap<ItemKey, CustomItem> items = new HashMap<>();
     private static final Set<BrewingRecipe> brewItems = new HashSet<>();
 
-    public ItemManager(Plugin plugin) {
-        this.plugin = plugin;
-    }
 
     public void registerItem(CustomItem item) {
         items.put(item.key,item);
@@ -31,7 +27,7 @@ public class ItemManager {
         brewItems.add(recipe);
     }
 
-    public void applyRecipes() {
+    public void applyRecipes(Plugin plugin) {
         for (CustomItem item : items.values()) {
             System.out.println(item.key);
             List<Recipe> recipes = item.getRecipes();
@@ -41,7 +37,7 @@ public class ItemManager {
         }
     }
 
-    public HashMap<ItemKey, CustomItem> getAll() {
+    public static HashMap<ItemKey, CustomItem> getAll() {
         return items;
     }
 

@@ -14,8 +14,8 @@ public enum CustomEffectKey {
         this.name = _name;
     }
 
-    public String getName(){
-        return "";
+    public Component getName(){
+        return name;
     }
 
 }

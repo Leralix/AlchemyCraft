@@ -6,6 +6,7 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
@@ -16,6 +17,7 @@ import org.leralix.alchemycraft.Drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
+import org.leralix.alchemycraft.Listeners.PlayerConsumeItem;
 
 import java.util.List;
 
@@ -41,11 +43,11 @@ public class CookedPigTrotter extends CustomItem implements Consumable {
 
     @Override
     public List<Recipe> getRecipes() {
-        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_cooked_pig_trotter"), getItem(), new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.PIG_TROTTER)), 0.35f, 200);
+        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_cooked_pig_trotter"), getItem(), new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.PIG_TROTTER)), 0.35f, 200);
         return List.of(recipe);
     }
 
-    public void onConsume(Player player) {
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
         player.addPotionEffect(PotionEffectType.REGENERATION.createEffect(20 * 4, 1));
         player.setFoodLevel(player.getFoodLevel() + 7);
     }

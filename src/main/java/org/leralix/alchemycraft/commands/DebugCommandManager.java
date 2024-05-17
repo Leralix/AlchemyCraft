@@ -4,7 +4,7 @@ import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.leralix.alchemycraft.commands.subcommands.Test;
-import org.leralix.alchemycraft.commands.subcommands.getItem;
+import org.leralix.alchemycraft.commands.subcommands.GetItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,9 +16,8 @@ public class DebugCommandManager implements CommandExecutor, TabExecutor, TabCom
     private final ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public DebugCommandManager(){
-
         subCommands.add(new Test());
-        subCommands.add(new getItem());
+        subCommands.add(new GetItem());
     }
 
     @Override

@@ -4,6 +4,7 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
@@ -44,18 +45,22 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
         return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), inventory -> {
 
             for (int i = 0; i < 3; i++) {
-
                 ItemStack currentItem = inventory.getItem(i);
-
                 if(currentItem.getType() == Material.GLASS_BOTTLE){
                     inventory.setItem(i,getItem());
                 }
             }
         },false,10,0);
     }
-    public void onConsume(Player player) {
-        player.addPotionEffect(PotionEffectType.SPEED.createEffect(20 * 3, 1));
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
+        event.setCancelled(true);
+        player.getInventory().removeItem(event.getItem());
+        player.getInventory().setItemInMainHand(new ItemStack(Material.GLASS_BOTTLE));
 
+
+        player.addPotionEffect(PotionEffectType.SPEED.createEffect(20 * 5, 1));
         player.setFoodLevel(player.getFoodLevel() + 2);
+
+
     }
 }

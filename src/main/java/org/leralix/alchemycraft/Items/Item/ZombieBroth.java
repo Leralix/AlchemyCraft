@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
@@ -15,6 +16,7 @@ import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Consumable.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.Items.ItemManager;
 
 import java.util.List;
 
@@ -48,12 +50,13 @@ public class ZombieBroth extends CustomItem implements Consumable {
                 "C  "
         );
         craftingRecipe.setIngredient('A', Material.ROTTEN_FLESH);
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.ZOMBIE_LEG)));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.ZOMBIE_LEG)));
         craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);
     }
-    public void onConsume(Player player) {
+    @Override
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
         player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20 * 5, 1));
         player.addPotionEffect(PotionEffectType.CONFUSION.createEffect(20 * 20, 1));
         player.addPotionEffect(PotionEffectType.POISON.createEffect(20 * 3, 2));

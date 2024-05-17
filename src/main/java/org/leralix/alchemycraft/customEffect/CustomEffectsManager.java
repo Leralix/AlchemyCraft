@@ -16,7 +16,6 @@ public class CustomEffectsManager {
     private static final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
 
-
     public static void addEffect(Player player, CustomEffectKey effect){
         String playerName = player.getUniqueId().toString();
 
@@ -28,7 +27,7 @@ public class CustomEffectsManager {
     }
 
     public static void addTimedEffect(Player player, CustomEffectKey effect, int timeInSecond){
-        player.sendMessage("add effect: " + effect.toString() + " for " + timeInSecond + " seconds");
+        player.sendMessage("add effect: " + effect.getName() + " for " + timeInSecond + " seconds");
         String playerName = player.getUniqueId().toString();
         if(PlayersEffect.containsKey(playerName)){
             PlayersEffect.get(playerName).add(effect);
@@ -42,8 +41,8 @@ public class CustomEffectsManager {
     public static void removeEffect(Player player, CustomEffectKey effect){
 
         String playerName = player.getUniqueId().toString();
+        player.sendMessage("remove effect: " + effect.getName());
 
-        System.out.println("test0");
         if(PlayersEffect.containsKey(playerName)){
             PlayersEffect.get(playerName).remove(effect);
         }

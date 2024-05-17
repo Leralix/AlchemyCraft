@@ -13,7 +13,7 @@ public class CommandManager implements CommandExecutor, TabExecutor, TabComplete
     private final ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public CommandManager(){
-        subCommands.add(new Test());
+        //subCommands.add(new Test());
     }
 
     @Override

@@ -7,6 +7,7 @@ import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
@@ -41,7 +42,8 @@ public class ZombieLeg extends CustomItem implements Consumable {
 
     }
 
-    public void onConsume(Player player) {
+    @Override
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
         player.addPotionEffect(PotionEffectType.SLOW.createEffect(20 * 3, 4));
         player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20 * 5, 1));
         player.addPotionEffect(PotionEffectType.CONFUSION.createEffect(20 * 20, 1));

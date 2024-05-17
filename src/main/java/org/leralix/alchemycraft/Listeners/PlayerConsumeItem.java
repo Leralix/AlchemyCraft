@@ -24,10 +24,10 @@ public class PlayerConsumeItem implements Listener {
 
         CustomItem customItem = ItemManager.get(item);
 
-        if(!(customItem instanceof Consumable consumableItem))
-            return;
-        event.setCancelled(true);
-        consumableItem.onConsume(player);
+        if(customItem instanceof Consumable consumableItem){
+            consumableItem.onConsume(player, event);
+        }
+
     }
 
 }

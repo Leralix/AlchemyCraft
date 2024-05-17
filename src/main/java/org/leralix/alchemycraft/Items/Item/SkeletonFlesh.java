@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
@@ -34,7 +35,8 @@ public class SkeletonFlesh extends CustomItem implements Consumable {
         DropManager.registerDrop(EntityType.SKELETON, new DropItem(getItem(),0.05));
         DropManager.registerDrop(EntityType.HORSE, new DropItem(getItem(),1));
     }
-    public void onConsume(Player player) {
+    @Override
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
         player.addPotionEffect(PotionEffectType.SLOW.createEffect(20 * 3, 4));
         player.addPotionEffect(PotionEffectType.BLINDNESS.createEffect(20 * 5, 1));
         player.addPotionEffect(PotionEffectType.CONFUSION.createEffect(20 * 10, 1));

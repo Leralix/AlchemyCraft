@@ -15,6 +15,7 @@ import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Consumable.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.Items.ItemManager;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class Plate extends CustomItem {
 
     @Override
     public List<Recipe> getRecipes() {
-        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_plate"), getItem(), new RecipeChoice.ExactChoice(AlchemyCraft.getItemManager().getItemStack(ItemKey.UNCOOKED_PLATE)), 1f, 1000);
+        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_plate"), getItem(), new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.UNCOOKED_PLATE)), 1f, 1000);
         return List.of(recipe);
     }
 

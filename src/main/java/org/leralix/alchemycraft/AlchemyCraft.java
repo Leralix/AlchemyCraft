@@ -92,7 +92,8 @@ public final class AlchemyCraft extends JavaPlugin {
     }
 
     public void RegisterItems(){
-        itemManager = new ItemManager(this);
+        itemManager = new ItemManager();
+
         itemManager.registerItem(new GoldenBeetroot());
         itemManager.registerItem(new ZombieLeg());
         itemManager.registerItem(new ZombieBroth());
@@ -123,16 +124,14 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItem(new Plate());
 
 
-        itemManager.applyRecipes();
+        itemManager.applyRecipes(this);
 
     }
 
     public static AlchemyCraft getPlugin() {
         return plugin;
     }
-    public static ItemManager getItemManager() {
-        return itemManager;
-    }
+
     public static Logger getPluginLogger() {
         return logger;
     }

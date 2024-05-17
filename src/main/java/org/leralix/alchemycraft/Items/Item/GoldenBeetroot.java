@@ -17,6 +17,9 @@ import java.util.List;
 
 public class GoldenBeetroot extends CustomItem {
 
+    public GoldenBeetroot(){
+        super(ItemKey.GOLDEN_BEETROOT, getItem());
+    }
 
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.BEETROOT);
@@ -31,9 +34,7 @@ public class GoldenBeetroot extends CustomItem {
         return itemStack;
     }
 
-    public GoldenBeetroot(){
-        super(ItemKey.GOLDEN_BEETROOT, getItem());
-    }
+
     @Override
     public List<Recipe> getRecipes() {
         NamespacedKey craftingKey = new NamespacedKey(AlchemyCraft.getPlugin(), "alchemycraft_goldenbeetroot");

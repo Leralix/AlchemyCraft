@@ -5,6 +5,7 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
@@ -34,8 +35,8 @@ public class PigTrotter extends CustomItem implements Consumable {
         DropManager.registerDrop(EntityType.PIGLIN, new DropItem(getItem(),0.25));
     }
 
-    public void onConsume(Player player) {
-
+    @Override
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
         player.setFoodLevel(player.getFoodLevel() + 3);
     }
 
