@@ -13,17 +13,18 @@ import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
-import org.leralix.alchemycraft.Consumable.Consumable;
+import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.customEffect.CustomEffectKey;
 import org.leralix.alchemycraft.customEffect.CustomEffectsManager;
+import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.List;
 
 //@ItemData(name = Lang.ZOMBIE_BROTH.getTranslation(), base = Material.POTION, durability = 10, model_data = 101, version = 1)
-public class GoldenSoup extends CustomItem implements Consumable {
+public class GoldenSoup extends CustomItem implements Consumable, Craftable {
 
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.MUSHROOM_STEW);

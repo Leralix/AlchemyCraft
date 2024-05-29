@@ -1,9 +1,11 @@
-package org.leralix.alchemycraft.Brewing;
+package org.leralix.alchemycraft.brewing;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.leralix.alchemycraft.Items.ItemManager;
+import org.leralix.alchemycraft.interfaces.BrewAction;
+import org.leralix.alchemycraft.brewing.BrewClock;
 
 public class BrewingRecipe {
 

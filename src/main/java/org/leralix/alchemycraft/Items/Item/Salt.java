@@ -6,9 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.leralix.alchemycraft.Brewing.BrewAction;
-import org.leralix.alchemycraft.Brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Brewing.CustomItemBrew;
+import org.leralix.alchemycraft.brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Items.CustomItemBrew;
 import org.leralix.alchemycraft.Items.ItemKey;
 
 public class Salt extends CustomItemBrew {

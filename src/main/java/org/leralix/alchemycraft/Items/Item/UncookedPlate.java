@@ -9,10 +9,11 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.List;
 
-public class UncookedPlate extends CustomItem {
+public class UncookedPlate extends CustomItem implements Craftable {
 
 
     private static ItemStack getItem() {
@@ -47,5 +48,4 @@ public class UncookedPlate extends CustomItem {
 
         return List.of(craftingRecipe);
     }
-
 }

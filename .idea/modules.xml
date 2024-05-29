@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlchemyCraft.alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AlchemyCraft.alchemycraft.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/alchemycraft.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alchemycraft.test.iml" filepath="$PROJECT_DIR$/.idea/modules/alchemycraft.test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/org.leralix.alchemycraft.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlchemyCraft.iml" filepath="$PROJECT_DIR$/.idea/modules/AlchemyCraft.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AlchemyCraft.main.iml" filepath="$PROJECT_DIR$/.idea/modules/AlchemyCraft.main.iml" />
     </modules>
   </component>
 </project>

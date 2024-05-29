@@ -3,8 +3,8 @@ package org.leralix.alchemycraft.Items;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.plugin.Plugin;
-import org.leralix.alchemycraft.Brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Brewing.CustomItemBrew;
+import org.leralix.alchemycraft.brewing.BrewingRecipe;
+import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.*;
 
@@ -16,23 +16,24 @@ public class ItemManager {
 
     public void registerItem(CustomItem item) {
         items.put(item.key,item);
+        if(item instanceof CustomItemBrew customItemBrew){
+            registerBrewing(customItemBrew.getBrewRecipe());
+        }
     }
 
-    public void registerItem(CustomItemBrew brewItem) {
-        items.put(brewItem.key,brewItem);
-        //brewItems.add(brewItem.recipe);
-    }
 
-    public static void registerBrewing(BrewingRecipe recipe) {
+    public void registerBrewing(BrewingRecipe recipe) {
         brewItems.add(recipe);
     }
 
     public void applyRecipes(Plugin plugin) {
         for (CustomItem item : items.values()) {
             System.out.println(item.key);
-            List<Recipe> recipes = item.getRecipes();
-            for (Recipe recipe : recipes) {
-                plugin.getServer().addRecipe(recipe);
+            if (item instanceof Craftable craftable){
+                List<Recipe> recipes = craftable.getRecipes();
+                for (Recipe recipe : recipes) {
+                    plugin.getServer().addRecipe(recipe);
+                }
             }
         }
     }

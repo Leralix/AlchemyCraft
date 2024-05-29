@@ -5,13 +5,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
-import org.leralix.alchemycraft.Consumable.Consumable;
+import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemManager;
 
 
 public class PlayerConsumeItem implements Listener {
-
 
     @EventHandler
     public void onPlayerConsume(PlayerItemConsumeEvent event) {

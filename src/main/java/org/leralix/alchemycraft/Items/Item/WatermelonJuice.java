@@ -8,10 +8,9 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
-import org.leralix.alchemycraft.Brewing.BrewAction;
-import org.leralix.alchemycraft.Brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Brewing.CustomItemBrew;
-import org.leralix.alchemycraft.Consumable.Consumable;
+import org.leralix.alchemycraft.brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Items.CustomItemBrew;
+import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.ItemKey;
 
 public class WatermelonJuice extends CustomItemBrew implements Consumable {
@@ -52,15 +51,13 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
             }
         },false,10,0);
     }
+
     public void onConsume(Player player, PlayerItemConsumeEvent event) {
         event.setCancelled(true);
         player.getInventory().removeItem(event.getItem());
         player.getInventory().setItemInMainHand(new ItemStack(Material.GLASS_BOTTLE));
 
-
         player.addPotionEffect(PotionEffectType.SPEED.createEffect(20 * 5, 1));
         player.setFoodLevel(player.getFoodLevel() + 2);
-
-
     }
 }

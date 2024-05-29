@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.Brewing;
+package org.leralix.alchemycraft.brewing;
 
 import org.bukkit.block.BrewingStand;
 

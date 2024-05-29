@@ -3,13 +3,11 @@ package org.leralix.alchemycraft.commands;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.leralix.alchemycraft.commands.subcommands.Test;
-import org.leralix.alchemycraft.commands.subcommands.GetItem;
+import org.leralix.alchemycraft.commands.adminSubCommand.Test;
+import org.leralix.alchemycraft.commands.adminSubCommand.GetItem;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.leralix.alchemycraft.commands.CommandManager.TabCompleter;
 
 public class DebugCommandManager implements CommandExecutor, TabExecutor, TabCompleter {
 
@@ -47,12 +45,25 @@ public class DebugCommandManager implements CommandExecutor, TabExecutor, TabCom
 
     @Override
     public List<String> onTabComplete(@NotNull CommandSender sender,@NotNull Command command,@NotNull String label, String[] args) {
-        return TabCompleter(sender, args, subCommands);
+        List<String> suggestions = new ArrayList<>();
+
+        if(args.length == 1) {
+            for(SubCommand subCmd : subCommands) {
+                if(subCmd.getName().startsWith(args[0].toLowerCase())) {
+                    suggestions.add(subCmd.getName());
+                }
+            }
+        }else {
+            SubCommand subCmd = subCommands.stream().filter(cmd -> cmd.getName().equalsIgnoreCase(args[0])).findFirst().orElse(null);
+            if(subCmd != null && sender instanceof Player) {
+                suggestions = subCmd.getTabCompleteSuggestions((Player) sender, args);
+            }
+        }
+
+        return suggestions;
     }
 
     public List<SubCommand> getSubcommands(){
         return subCommands;
     }
-
-
 }

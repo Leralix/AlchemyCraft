@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.Brewing;
+package org.leralix.alchemycraft.brewing;
 
 import org.bukkit.Material;
 import org.bukkit.block.BrewingStand;
@@ -26,7 +26,6 @@ public class BrewClock extends BukkitRunnable {
         this.stand = inventory.getHolder();
         this.before = inventory.getContents();
         this.current = time;
-
         runTaskTimer(AlchemyCraft.getPlugin(), 0, 1);
     }
     @Override

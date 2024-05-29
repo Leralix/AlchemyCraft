@@ -6,15 +6,14 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.leralix.alchemycraft.Brewing.CustomItemBrew;
-import org.leralix.alchemycraft.Drops.DropManager;
+import org.leralix.alchemycraft.Items.CustomItemBrew;
 import org.leralix.alchemycraft.Items.Item.*;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
 import org.leralix.alchemycraft.Listeners.*;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
-import org.leralix.alchemycraft.commands.CommandManager;
 import org.leralix.alchemycraft.commands.DebugCommandManager;
+import org.leralix.alchemycraft.drops.DropManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,8 +49,7 @@ public final class AlchemyCraft extends JavaPlugin {
         logger.info(Lang.LANGUAGE_SUCCESSFULLY_LOADED.getTranslation());
 
         logger.info("[Alc] -Loading Commands");
-        Objects.requireNonNull(getCommand("alch")).setExecutor(new CommandManager());
-        Objects.requireNonNull(getCommand("alchdebug")).setExecutor(new DebugCommandManager());
+        getCommand("alchdebug").setExecutor(new DebugCommandManager());
 
 
         logger.info("[Alc] -Loading items, crafts & events");
@@ -95,15 +93,19 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager = new ItemManager();
 
         itemManager.registerItem(new GoldenBeetroot());
+        itemManager.registerItem(new WatermelonJuice());
+
+        itemManager.registerItem(new UncookedPlate());
+        itemManager.registerItem(new Plate());
         itemManager.registerItem(new ZombieLeg());
+
+        /*
         itemManager.registerItem(new ZombieBroth());
         itemManager.registerItem(new SkeletonFlesh());
         itemManager.registerItem(new GolemHeart());
         itemManager.registerItem(new PigTrotter());
         itemManager.registerItem(new ZombieElixir());
-        CustomItemBrew _watermelonJuice = new WatermelonJuice();
-        itemManager.registerItem(_watermelonJuice);
-        ItemManager.registerBrewing(_watermelonJuice.getBrewRecipe());
+
 
         itemManager.registerItem(new GrowthPowder());
         itemManager.registerItem(new FungalExplosive());
@@ -120,9 +122,7 @@ public final class AlchemyCraft extends JavaPlugin {
 
         itemManager.registerItem(new CookedPigTrotter());
 
-        itemManager.registerItem(new UncookedPlate());
-        itemManager.registerItem(new Plate());
-
+        */
 
         itemManager.applyRecipes(this);
 

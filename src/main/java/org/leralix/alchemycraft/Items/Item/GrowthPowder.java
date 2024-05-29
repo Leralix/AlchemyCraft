@@ -12,11 +12,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.List;
 
 //@ItemData(name = Lang.ZOMBIE_BROTH.getTranslation(), base = Material.POTION, durability = 10, model_data = 101, version = 1)
-public class GrowthPowder extends CustomItem {
+public class GrowthPowder extends CustomItem implements Craftable {
 
     private static ItemStack getItem() {
         ItemStack itemStack = new ItemStack(Material.SUGAR);

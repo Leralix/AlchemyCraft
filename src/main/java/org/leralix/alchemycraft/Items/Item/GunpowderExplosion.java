@@ -1,15 +1,12 @@
 package org.leralix.alchemycraft.Items.Item;
 
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
-import org.leralix.alchemycraft.Brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Brewing.CustomItemBrew;
+import org.leralix.alchemycraft.brewing.BrewingRecipe;
+import org.leralix.alchemycraft.Items.CustomItemBrew;
 import org.leralix.alchemycraft.Items.ItemKey;
 
 public class GunpowderExplosion extends CustomItemBrew {

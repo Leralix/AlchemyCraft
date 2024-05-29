@@ -6,8 +6,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.leralix.alchemycraft.Drops.DropItem;
-import org.leralix.alchemycraft.Drops.DropManager;
+import org.leralix.alchemycraft.drops.DropItem;
+import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
 

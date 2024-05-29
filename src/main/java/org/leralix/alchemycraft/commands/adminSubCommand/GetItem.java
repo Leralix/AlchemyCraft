@@ -1,7 +1,6 @@
-package org.leralix.alchemycraft.commands.subcommands;
+package org.leralix.alchemycraft.commands.adminSubCommand;
 
 import org.bukkit.entity.Player;
-import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;

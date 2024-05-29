@@ -5,17 +5,20 @@ import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
+import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
+import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.List;
 
-public class GoldenBeetroot extends CustomItem {
+public class GoldenBeetroot extends CustomItem implements Consumable, Craftable {
 
     public GoldenBeetroot(){
         super(ItemKey.GOLDEN_BEETROOT, getItem());
@@ -46,8 +49,15 @@ public class GoldenBeetroot extends CustomItem {
         return List.of(craftingRecipe);
     }
 
-    public void onConsume(Player player) {
-        player.setFoodLevel(player.getFoodLevel() + 5);
+    public void onConsume(Player player, PlayerItemConsumeEvent event) {
+        event.setCancelled(true);
+        ItemStack item = event.getItem();
+        if(item.getAmount() > 1)
+            item.setAmount(item.getAmount() - 1);
+        else
+            player.getInventory().removeItem(event.getItem());
+        player.setFoodLevel(player.getFoodLevel() + 2);
+
     }
 
 }

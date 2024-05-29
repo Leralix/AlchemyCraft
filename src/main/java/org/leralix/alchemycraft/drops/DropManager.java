@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.Drops;
+package org.leralix.alchemycraft.drops;
 
 import org.bukkit.entity.EntityType;
 

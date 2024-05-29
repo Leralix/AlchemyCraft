@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.Brewing;
+package org.leralix.alchemycraft.interfaces;
 
 import org.bukkit.inventory.BrewerInventory;
 

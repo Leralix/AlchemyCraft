@@ -1,4 +1,4 @@
-package org.leralix.alchemycraft.Consumable;
+package org.leralix.alchemycraft.interfaces;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerItemConsumeEvent;

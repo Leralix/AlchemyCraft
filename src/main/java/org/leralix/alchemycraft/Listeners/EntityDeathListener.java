@@ -4,8 +4,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.leralix.alchemycraft.Drops.DropItem;
-import org.leralix.alchemycraft.Drops.DropManager;
+import org.leralix.alchemycraft.drops.DropItem;
+import org.leralix.alchemycraft.drops.DropManager;
 
 import java.util.List;
 

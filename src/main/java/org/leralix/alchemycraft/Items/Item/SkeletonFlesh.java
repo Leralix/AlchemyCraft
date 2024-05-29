@@ -9,9 +9,9 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
-import org.leralix.alchemycraft.Consumable.Consumable;
-import org.leralix.alchemycraft.Drops.DropItem;
-import org.leralix.alchemycraft.Drops.DropManager;
+import org.leralix.alchemycraft.interfaces.Consumable;
+import org.leralix.alchemycraft.drops.DropItem;
+import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemKey;
 
