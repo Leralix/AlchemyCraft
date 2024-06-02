@@ -3,7 +3,7 @@ package org.leralix.alchemycraft.commands;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import org.leralix.alchemycraft.commands.adminSubCommand.Test;
+import org.leralix.alchemycraft.commands.adminSubCommand.getPlayerEffect;
 import org.leralix.alchemycraft.commands.adminSubCommand.GetItem;
 
 import java.util.ArrayList;
@@ -14,7 +14,7 @@ public class DebugCommandManager implements CommandExecutor, TabExecutor, TabCom
     private final ArrayList<SubCommand> subCommands = new ArrayList<>();
 
     public DebugCommandManager(){
-        subCommands.add(new Test());
+        subCommands.add(new getPlayerEffect());
         subCommands.add(new GetItem());
     }
 

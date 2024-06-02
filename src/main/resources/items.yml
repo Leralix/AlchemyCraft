@@ -1,5 +1,3 @@
-
-
 custom_items:
   golden_beetroot:
     display_name: "alchemy_craft.item.golden_beetroot"
@@ -30,19 +28,26 @@ custom_items:
         mob: "ZOMBIE"
         drop_rate: 0.9
         amount: 1
-
+      brewing_stand:
+        recipe:
+          ingredient: "GOLD_INGOT"
+          fuel: "COAL"
+          recipient: "BEETROOT"
+          ingredient_after_brewing: "GOLD_NUGGET"
 
     consumable:
       saturation: 1
       hunger: 1
       effects:
-        effect:
-          type: "REGENERATION"
+        - type: "REGENERATION"
           duration: 10
           amplifier: 1
+        - type: "SATURATION"
+          duration: 3
+          amplifier: 3
       remove_on_consume: true
       give_item_on_consume:
         item_given_when_consumed: "BEETROOT"
-    smeltable:
+
 
 

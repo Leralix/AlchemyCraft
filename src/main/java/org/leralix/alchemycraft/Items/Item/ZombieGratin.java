@@ -15,7 +15,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
@@ -38,7 +37,7 @@ public class ZombieGratin extends CustomItem implements Consumable, Craftable {
     }
 
     public ZombieGratin(){
-        super(ItemKey.ZOMBIE_GRATIN,getItem());
+        super("ZOMBIE_GRATIN",getItem());
     }
 
     @Override
@@ -51,11 +50,11 @@ public class ZombieGratin extends CustomItem implements Consumable, Craftable {
                 "DE "
         );
 
-        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.ZOMBIE_ELIXIR)));
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.PIG_TROTTER)));
+        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack("ZOMBIE_ELIXIR")));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack("PIG_TROTTER")));
         craftingRecipe.setIngredient('C', Material.POTATO);
         craftingRecipe.setIngredient('D', Material.BOWL);
-        craftingRecipe.setIngredient('E', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.SALT)));
+        craftingRecipe.setIngredient('E', new RecipeChoice.ExactChoice(ItemManager.getItemStack("SALT")));
 
 
 

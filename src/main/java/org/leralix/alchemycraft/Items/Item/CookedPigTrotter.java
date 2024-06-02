@@ -11,7 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
@@ -34,12 +33,15 @@ public class CookedPigTrotter extends CustomItem implements Consumable, Craftabl
     }
 
     public CookedPigTrotter(){
-        super(ItemKey.COOKED_PIG_TROTTER,getItem());
+        super("COOKED_PIG_TROTTER",getItem());
     }
 
     @Override
     public List<Recipe> getRecipes() {
-        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_cooked_pig_trotter"), getItem(), new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.PIG_TROTTER)), 0.35f, 200);
+
+        NamespacedKey namespacedKey = NamespacedKey.minecraft("alchemycraft_cooked_pig_trotter");
+        RecipeChoice recipeChoice = new RecipeChoice.ExactChoice(ItemManager.getItemStack("PIG_TROTTER"));
+        FurnaceRecipe recipe = new FurnaceRecipe(namespacedKey, getItem(),recipeChoice, 0.35f, 200) ;
         return List.of(recipe);
     }
 

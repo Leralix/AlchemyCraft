@@ -12,7 +12,6 @@ import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 public class PigTrotter extends CustomItem implements Consumable {
 
@@ -30,7 +29,7 @@ public class PigTrotter extends CustomItem implements Consumable {
     }
 
     public PigTrotter(){
-        super(ItemKey.PIG_TROTTER,getItem());
+        super("PIG_TROTTER",getItem());
         DropManager.registerDrop(EntityType.PIGLIN, new DropItem(getItem(),0.25));
     }
 

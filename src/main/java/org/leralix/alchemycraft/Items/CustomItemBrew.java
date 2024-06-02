@@ -2,8 +2,6 @@ package org.leralix.alchemycraft.Items;
 
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
-import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.brewing.BrewClock;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 
@@ -18,7 +16,7 @@ public abstract class CustomItemBrew extends CustomItem{
     public BrewingRecipe recipe;
 
 
-    public CustomItemBrew(ItemKey _key, ItemStack _itemStack) {
+    public CustomItemBrew(String _key, ItemStack _itemStack) {
         super(_key, _itemStack);
     }
 

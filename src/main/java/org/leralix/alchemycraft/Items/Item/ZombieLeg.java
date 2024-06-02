@@ -14,7 +14,6 @@ import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 //@ItemData(name = "Zombie leg", base = Material.ROTTEN_FLESH, durability = 100, model_data = 101, version = 1)
 public class ZombieLeg extends CustomItem implements Consumable {
@@ -34,7 +33,7 @@ public class ZombieLeg extends CustomItem implements Consumable {
     }
 
     public ZombieLeg(){
-        super(ItemKey.ZOMBIE_LEG,getItem());
+        super("ZOMBIE_LEG",getItem());
         DropManager.registerDrop(EntityType.ZOMBIE_HORSE, new DropItem(getItem(),1));
         DropManager.registerDrop(EntityType.ZOMBIE, new DropItem(getItem(),0.05));
 

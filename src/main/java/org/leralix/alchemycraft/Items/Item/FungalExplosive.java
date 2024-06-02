@@ -11,7 +11,6 @@ import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
 import java.util.List;
@@ -33,7 +32,7 @@ public class FungalExplosive extends CustomItem implements Craftable {
     }
 
     public FungalExplosive(){
-        super(ItemKey.FUNGAL_EXPLOSIVE,getItem());
+        super("FUNGAL_EXPLOSIVE",getItem());
     }
 
     @Override

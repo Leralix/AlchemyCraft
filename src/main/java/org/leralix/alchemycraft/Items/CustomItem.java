@@ -9,12 +9,12 @@ import java.util.Map;
 public class CustomItem {
 
 
-    private final ItemKey key;
+    private final String key;
     private final ItemStack itemStack;
-    private Map<Class<? extends Behavior>, Behavior> behaviors;
+    private final Map<Class<? extends Behavior>, Behavior> behaviors;
 
 
-    public CustomItem(ItemKey _key, ItemStack _itemStack){
+    public CustomItem(String _key, ItemStack _itemStack){
         key = _key;
         itemStack = _itemStack;
         behaviors = new HashMap<>();
@@ -23,7 +23,7 @@ public class CustomItem {
     public ItemStack getItemStack(){
         return itemStack;
     }
-    public ItemKey getKey(){
+    public String getKey(){
         return key;
     }
 
@@ -36,4 +36,7 @@ public class CustomItem {
     }
 
 
+    public Map<Class<? extends Behavior>, Behavior> getBehaviors() {
+        return behaviors;
+    }
 }

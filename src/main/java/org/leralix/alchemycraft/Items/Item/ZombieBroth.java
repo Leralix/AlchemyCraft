@@ -15,7 +15,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
@@ -38,7 +37,7 @@ public class ZombieBroth extends CustomItem implements Consumable, Craftable {
     }
 
     public ZombieBroth(){
-        super(ItemKey.ZOMBIE_BROTH,getItem());
+        super("ZOMBIE_BROTH",getItem());
     }
 
     @Override
@@ -51,7 +50,7 @@ public class ZombieBroth extends CustomItem implements Consumable, Craftable {
                 "C  "
         );
         craftingRecipe.setIngredient('A', Material.ROTTEN_FLESH);
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.ZOMBIE_LEG)));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack("ZOMBIE_LEG")));
         craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);

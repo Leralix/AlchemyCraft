@@ -15,7 +15,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
@@ -38,7 +37,7 @@ public class ZombieElixir extends CustomItem implements Consumable, Craftable {
     }
 
     public ZombieElixir(){
-        super(ItemKey.ZOMBIE_ELIXIR,getItem());
+        super("ZOMBIE_ELIXIR",getItem());
     }
 
     @Override
@@ -50,7 +49,7 @@ public class ZombieElixir extends CustomItem implements Consumable, Craftable {
                 " B ",
                 "   "
         );
-        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.ZOMBIE_BROTH)));
+        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack("ZOMBIE_BROTH")));
         craftingRecipe.setIngredient('B', Material.HONEY_BOTTLE);
 
         return List.of(craftingRecipe);

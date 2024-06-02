@@ -61,8 +61,8 @@ public final class AlchemyCraft extends JavaPlugin {
         itemManager.registerItems();
 
         //RegisterItems();
-        //RegisterEvents();
-        //giveALlRecipes();
+        RegisterEvents();
+        giveALlRecipes();
 
 
         logger.info("------------------Alchemy Craft--------------------");

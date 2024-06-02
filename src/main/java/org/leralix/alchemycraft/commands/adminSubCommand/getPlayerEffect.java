@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Test extends SubCommand {
+public class getPlayerEffect extends SubCommand {
     @Override
     public String getName() {
-        return "test";
+        return "getplayereffect";
     }
 
 
@@ -23,7 +23,7 @@ public class Test extends SubCommand {
     }
     @Override
     public String getSyntax() {
-        return "/alchdebug test";
+        return "/alchdebug getplayereffect <player>";
     }
 
     @Override

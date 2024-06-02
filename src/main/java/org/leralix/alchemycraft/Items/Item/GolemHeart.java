@@ -9,7 +9,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 public class GolemHeart extends CustomItem {
 
@@ -27,7 +26,7 @@ public class GolemHeart extends CustomItem {
     }
 
     public GolemHeart(){
-        super(ItemKey.GOLEM_HEART,getItem());
+        super("GOLEM_HEART",getItem());
         DropManager.registerDrop(EntityType.IRON_GOLEM, new DropItem(getItem(),0.75));
     }
 

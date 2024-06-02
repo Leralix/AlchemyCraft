@@ -11,7 +11,6 @@ import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 import org.leralix.alchemycraft.Items.CustomItemBrew;
 import org.leralix.alchemycraft.interfaces.Consumable;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 public class WatermelonJuice extends CustomItemBrew implements Consumable {
 
@@ -31,7 +30,7 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
     }
 
     public WatermelonJuice(){
-        super(ItemKey.WATERMELON_JUICE, getItem());
+        super("WATERMELON_JUICE", getItem());
     }
 
 
@@ -42,7 +41,6 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
 
     public BrewingRecipe getBrewRecipe() {
         return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), inventory -> {
-
             for (int i = 0; i < 3; i++) {
                 ItemStack currentItem = inventory.getItem(i);
                 if(currentItem.getType() == Material.GLASS_BOTTLE){

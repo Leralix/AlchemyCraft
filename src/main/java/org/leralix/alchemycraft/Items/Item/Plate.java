@@ -10,7 +10,6 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 
@@ -33,12 +32,12 @@ public class Plate extends CustomItem implements Craftable {
     }
 
     public Plate(){
-        super(ItemKey.PLATE,getItem());
+        super("PLATE",getItem());
     }
 
     @Override
     public List<Recipe> getRecipes() {
-        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_plate"), getItem(), new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.UNCOOKED_PLATE)), 1f, 1000);
+        FurnaceRecipe recipe = new FurnaceRecipe(NamespacedKey.minecraft("alchemycraft_plate"), getItem(), new RecipeChoice.ExactChoice(ItemManager.getItemStack("UNCOOKED_PLATE")), 1f, 1000);
         return List.of(recipe);
     }
 

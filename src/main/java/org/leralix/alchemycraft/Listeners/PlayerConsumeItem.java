@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.Items.ItemManager;
+import org.leralix.alchemycraft.interfaces.behavior.OnConsume;
 
 
 public class PlayerConsumeItem implements Listener {
@@ -20,13 +21,19 @@ public class PlayerConsumeItem implements Listener {
     }
 
     public void handleItemConsumption(Player player, ItemStack item, PlayerItemConsumeEvent event) {
+        event.setCancelled(true);
+
 
         CustomItem customItem = ItemManager.get(item);
 
-        if(customItem instanceof Consumable consumableItem){
-            consumableItem.onConsume(player, event);
-        }
+        if (customItem == null)
+            return;
 
+        OnConsume consumeBehavior = customItem.getBehavior(OnConsume.class);
+        if (consumeBehavior == null)
+            return;
+
+        consumeBehavior.onConsume(player);
     }
 
 }

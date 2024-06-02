@@ -20,8 +20,7 @@ public class BrewingRecipe {
 
     private boolean perfect;
 
-    public BrewingRecipe(ItemStack ingredient, ItemStack fuel, BrewAction action, boolean perfect, int fuelSet,
-                         int fuelCharge) {
+    public BrewingRecipe(ItemStack ingredient, ItemStack fuel, BrewAction action, boolean perfect, int fuelSet, int fuelCharge) {
         this.ingredient = ingredient;
         this.fuel = (fuel == null ? new ItemStack(Material.AIR) : fuel);
         this.setFuelSet(fuelSet);

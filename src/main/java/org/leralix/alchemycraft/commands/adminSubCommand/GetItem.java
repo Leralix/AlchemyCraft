@@ -2,7 +2,6 @@ package org.leralix.alchemycraft.commands.adminSubCommand;
 
 import org.bukkit.entity.Player;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.commands.SubCommand;
 
@@ -29,16 +28,14 @@ public class GetItem extends SubCommand {
     public List<String> getTabCompleteSuggestions(Player player, String[] args){
         List<String> suggestions = new ArrayList<>();
         if (args.length == 2) {
-            for (ItemKey item : ItemManager.getAll().keySet()) {
-                suggestions.add(item.toString());
-            }
+            suggestions.addAll(ItemManager.getAll().keySet());
         }
         return suggestions;
     }
     @Override
     public void perform(Player player, String[] args){
 
-        ItemKey itemKey = ItemKey.valueOf(args[1]);
+        String itemKey = args[1];
         CustomItem item = ItemManager.get(itemKey);
         if(item == null){
             player.sendMessage("Item not found");

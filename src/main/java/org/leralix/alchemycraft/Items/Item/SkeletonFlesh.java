@@ -13,7 +13,6 @@ import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.drops.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 public class SkeletonFlesh extends CustomItem implements Consumable {
 
@@ -31,7 +30,7 @@ public class SkeletonFlesh extends CustomItem implements Consumable {
     }
 
     public SkeletonFlesh(){
-        super(ItemKey.SKELETON_FLESH,getItem());
+        super("SKELETON_FLESH",getItem());
         DropManager.registerDrop(EntityType.SKELETON, new DropItem(getItem(),0.05));
         DropManager.registerDrop(EntityType.HORSE, new DropItem(getItem(),1));
     }

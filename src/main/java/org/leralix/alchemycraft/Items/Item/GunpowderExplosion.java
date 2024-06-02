@@ -7,7 +7,6 @@ import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 import org.leralix.alchemycraft.Items.CustomItemBrew;
-import org.leralix.alchemycraft.Items.ItemKey;
 
 public class GunpowderExplosion extends CustomItemBrew {
 
@@ -17,7 +16,7 @@ public class GunpowderExplosion extends CustomItemBrew {
     }
 
     public GunpowderExplosion(){
-        super(ItemKey.GUNPOWDER_EXPLOSION, getItem());
+        super("GUNPOWDER_EXPLOSION", getItem());
     }
 
 

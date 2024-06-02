@@ -14,6 +14,7 @@ import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.leralix.alchemycraft.AlchemyCraft;
@@ -21,16 +22,16 @@ import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.drops.DropManager;
-import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.interfaces.Craftable;
 import org.leralix.alchemycraft.interfaces.behavior.ConsumeBehavior;
+import org.leralix.alchemycraft.interfaces.behavior.OnConsume;
 
 import java.util.*;
 import java.util.logging.Logger;
 
 public class ItemManager {
 
-    private static final HashMap<ItemKey, CustomItem> items = new HashMap<>();
+    private static final HashMap<String, CustomItem> items = new HashMap<>();
     private static final Set<BrewingRecipe> brewItems = new HashSet<>();
 
 
@@ -58,11 +59,11 @@ public class ItemManager {
         }
     }
 
-    public static HashMap<ItemKey, CustomItem> getAll() {
+    public static HashMap<String, CustomItem> getAll() {
         return items;
     }
 
-    public static CustomItem get(ItemKey key){
+    public static CustomItem get(String key){
         if(items.containsKey(key))
             return items.get(key);
         return null;
@@ -81,8 +82,12 @@ public class ItemManager {
         return brewItems;
     }
 
-    public static ItemStack getItemStack(ItemKey key){
-        return Objects.requireNonNull(get(key)).getItemStack();
+    public static ItemStack getItemStack(String key){
+        CustomItem itemStack = get(key);
+        if (itemStack != null)
+            return itemStack.getItemStack();
+        else
+            throw new IllegalArgumentException("Item not found: " + key);
     }
 
 
@@ -120,7 +125,7 @@ public class ItemManager {
             List<String> lore = itemSection.getStringList("lore");
 
             ItemStack customItemStack = createCustomItemStack(material, displayName, customModelData);
-            CustomItem customItem = new CustomItem(ItemKey.ZOMBIE_LEG, customItemStack);
+            CustomItem customItem = new CustomItem(key, customItemStack);
 
             // Process obtainable_by section
             ConfigurationSection obtainableBySection = itemSection.getConfigurationSection("obtainable_by");
@@ -187,28 +192,66 @@ public class ItemManager {
 
                 // Mob Drop
                 ConfigurationSection mobDropSection = obtainableBySection.getConfigurationSection("mob_drop");
-                if (mobDropSection == null) {
+                if (mobDropSection != null) {
                     EntityType mob = EntityType.valueOf(mobDropSection.getString("mob"));
                     double drop_rate = mobDropSection.getDouble("drop_rate");
                     int amount = mobDropSection.getInt("amount");
                     DropManager.registerDrop(mob, new DropItem(customItemStack,drop_rate));
+                }
+
+                ConfigurationSection brewingSection = obtainableBySection.getConfigurationSection("brewing_stand");
+                if (brewingSection != null){
+                    ConfigurationSection ReceipeSection = brewingSection.getConfigurationSection("recipe");
+                    if(ReceipeSection == null)
+                        throw new IllegalArgumentException("Recipe section is required for brewing recipe for custom item: " + key);
+
+
+                    ItemStack ingredient = new ItemStack(Material.getMaterial(ReceipeSection.getString("ingredient")));
+                    ItemStack fuel = new ItemStack(Material.getMaterial(ReceipeSection.getString("fuel")));
+                    ItemStack recipient = new ItemStack(Material.getMaterial(ReceipeSection.getString("recipient")));
+                    ItemStack ingredient_after = new ItemStack(Material.getMaterial(ReceipeSection.getString("ingredient_after_brewing")));
+
+                    BrewingRecipe brewingRecipe = new BrewingRecipe(ingredient,fuel,inventory -> {
+                        inventory.setIngredient(ingredient_after);
+
+                        for (int i = 0; i < 3; i++) {
+                            ItemStack currentItem = inventory.getItem(i);
+                            if(currentItem == null && recipient == null) {
+                                inventory.setItem(i, customItemStack);
+                            }
+                            if(currentItem.getType() == recipient.getType()){
+                                inventory.setItem(i,customItemStack);
+                            }
+                        }
+
+                    },false,1,0);
+                    registerBrewing(brewingRecipe);
                 }
             }
 
             // Process consumable section
             ConfigurationSection consumableSection = itemSection.getConfigurationSection("consumable");
             if (consumableSection != null) {
-                int saturation = consumableSection.getInt("saturation");
                 int hunger = consumableSection.getInt("hunger");
-                ConfigurationSection effectsSection = consumableSection.getConfigurationSection("effects.effect");
-                PotionEffectType effectType = PotionEffectType.getByName(effectsSection.getString("type"));
-                int duration = effectsSection.getInt("duration");
-                int amplifier = effectsSection.getInt("amplifier");
+                int saturation = consumableSection.getInt("saturation");
+                List<PotionEffect> effects = new ArrayList<>();
+
+                List<Map<?, ?>> effectsList = consumableSection.getMapList("effects");
+                for (Map<?, ?> effectMap : effectsList) {
+                    String effectTypeStr = (String) effectMap.get("type");
+                    PotionEffectType effectType = PotionEffectType.getByName(effectTypeStr);
+                    int duration = (int) effectMap.get("duration") * 20;
+                    int amplifier = (int) effectMap.get("amplifier");
+
+                    if (effectType != null) {
+                        effects.add(new PotionEffect(effectType, duration, amplifier));
+                    }
+                }
 
                 boolean removeOnConsume = consumableSection.getBoolean("remove_on_consume");
                 String itemGivenWhenConsumed = consumableSection.getString("give_item_on_consume.item_given_when_consumed");
 
-                customItem.addBehavior(ConsumeBehavior.class, new ConsumeBehavior());
+                customItem.addBehavior(OnConsume.class, new ConsumeBehavior(hunger, saturation, effects, removeOnConsume, itemGivenWhenConsumed));
             }
 
             registerItem(customItem);

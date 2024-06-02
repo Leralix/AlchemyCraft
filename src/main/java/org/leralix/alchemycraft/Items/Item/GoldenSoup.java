@@ -15,7 +15,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.Items.CustomItem;
-import org.leralix.alchemycraft.Items.ItemKey;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.customEffect.CustomEffectKey;
 import org.leralix.alchemycraft.customEffect.CustomEffectsManager;
@@ -40,7 +39,7 @@ public class GoldenSoup extends CustomItem implements Consumable, Craftable {
     }
 
     public GoldenSoup(){
-        super(ItemKey.GOLDEN_SOUP,getItem());
+        super("GOLDEN_SOUP",getItem());
     }
 
     @Override
@@ -52,8 +51,8 @@ public class GoldenSoup extends CustomItem implements Consumable, Craftable {
                 "AA ",
                 "CB "
         );
-        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.GOLDEN_BEETROOT)));
-        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack(ItemKey.WATERMELON_JUICE)));
+        craftingRecipe.setIngredient('A', new RecipeChoice.ExactChoice(ItemManager.getItemStack("GOLDEN_BEETROOT")));
+        craftingRecipe.setIngredient('B', new RecipeChoice.ExactChoice(ItemManager.getItemStack("WATERMELON_JUICE")));
         craftingRecipe.setIngredient('C', Material.BOWL);
 
         return List.of(craftingRecipe);
