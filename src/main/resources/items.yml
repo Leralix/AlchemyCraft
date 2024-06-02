@@ -1,0 +1,48 @@
+
+
+custom_items:
+  golden_beetroot:
+    display_name: "alchemy_craft.item.golden_beetroot"
+    material: "BEETROOT"
+    custom_model_data: 5401
+    lore:
+      - "alchemy_craft.item.golden_beetroot.lore"
+      - "alchemy_craft.item.golden_beetroot.lore2"
+    obtainable_by:
+      crafting_table:
+        see_recipe: true
+        recipe:
+          shape:
+            - " A "
+            - "ABA"
+            - " A "
+          ingredients:
+            A: "GOLD_NUGGET"
+            B: "BEETROOT"
+      furnace:
+        see_recipe: true
+        recipe:
+          ingredient: "BEETROOT"
+          result: "GOLDEN_BEETROOT"
+          experience: 0.7
+          burning_duration: 200
+      mob_drop:
+        mob: "ZOMBIE"
+        drop_rate: 0.9
+        amount: 1
+
+
+    consumable:
+      saturation: 1
+      hunger: 1
+      effects:
+        effect:
+          type: "REGENERATION"
+          duration: 10
+          amplifier: 1
+      remove_on_consume: true
+      give_item_on_consume:
+        item_given_when_consumed: "BEETROOT"
+    smeltable:
+
+

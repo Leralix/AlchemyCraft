@@ -45,7 +45,7 @@ public class GetItem extends SubCommand {
             return;
         }
         player.sendMessage("Item " + itemKey + " added to your inventory");
-        player.getInventory().addItem(item.itemStack);
+        player.getInventory().addItem(item.getItemStack());
 
     }
 }

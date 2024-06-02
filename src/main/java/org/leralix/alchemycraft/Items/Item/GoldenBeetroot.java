@@ -21,10 +21,10 @@ import java.util.List;
 public class GoldenBeetroot extends CustomItem implements Consumable, Craftable {
 
     public GoldenBeetroot(){
-        super(ItemKey.GOLDEN_BEETROOT, getItem());
+        super(ItemKey.GOLDEN_BEETROOT, createItemStack());
     }
 
-    private static ItemStack getItem() {
+    private static ItemStack createItemStack() {
         ItemStack itemStack = new ItemStack(Material.BEETROOT);
         ItemMeta itemMeta = itemStack.getItemMeta();
 

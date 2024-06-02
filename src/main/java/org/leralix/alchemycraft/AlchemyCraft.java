@@ -44,6 +44,9 @@ public final class AlchemyCraft extends JavaPlugin {
         ConfigUtil.saveResource("lang.yml");
         ConfigUtil.loadCustomConfig("lang.yml");
 
+        ConfigUtil.saveResource("items.yml");
+        ConfigUtil.loadCustomConfig("items.yml");
+
         String lang = ConfigUtil.getCustomConfig("lang.yml").getString("language");
         Lang.loadTranslations(lang);
         logger.info(Lang.LANGUAGE_SUCCESSFULLY_LOADED.getTranslation());
@@ -54,9 +57,12 @@ public final class AlchemyCraft extends JavaPlugin {
 
         logger.info("[Alc] -Loading items, crafts & events");
 
-        RegisterItems();
-        RegisterEvents();
-        giveALlRecipes();
+        itemManager = new ItemManager();
+        itemManager.registerItems();
+
+        //RegisterItems();
+        //RegisterEvents();
+        //giveALlRecipes();
 
 
         logger.info("------------------Alchemy Craft--------------------");
@@ -90,7 +96,6 @@ public final class AlchemyCraft extends JavaPlugin {
     }
 
     public void RegisterItems(){
-        itemManager = new ItemManager();
 
         itemManager.registerItem(new GoldenBeetroot());
         itemManager.registerItem(new WatermelonJuice());
