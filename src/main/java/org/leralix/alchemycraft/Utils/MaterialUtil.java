@@ -3,6 +3,9 @@ package org.leralix.alchemycraft.Utils;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
+import org.bukkit.inventory.ItemStack;
+import org.leralix.alchemycraft.Items.CustomItem;
+import org.leralix.alchemycraft.Items.ItemManager;
 
 public class MaterialUtil {
 
@@ -73,5 +76,28 @@ public class MaterialUtil {
             case DIRT_PATH:
                 return true;
         }
+    }
+
+    public static ItemStack getItem(String itemString, String key) {
+
+
+        ItemStack item;
+        String itemName = itemString.split(":")[1];
+        if(itemString.startsWith("minecraft")) {
+            Material material = Material.matchMaterial(itemName.toUpperCase());
+            if (material == null)
+                throw new IllegalArgumentException("Invalid vanilla material for custom drop: " + key);
+            item = new ItemStack(material);
+        }
+        else if (itemString.startsWith("alchemy")){
+            CustomItem customItem = ItemManager.get(itemName);
+            if (customItem == null)
+                throw new IllegalArgumentException("Custom item not found : " + itemString);
+            item = customItem.getItemStack();
+        }
+        else
+            throw new IllegalArgumentException("Invalid item for custom drop: " + key);
+
+        return item;
     }
 }

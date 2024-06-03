@@ -25,22 +25,24 @@ public class BrewPotionEvent implements Listener {
         if (!(event.getClick() == ClickType.LEFT || event.getClick() == ClickType.RIGHT)) {
             return;
         }
+        event.setCancelled(true);
+
 
         ItemStack is = event.getCurrentItem(); // GETS ITEMSTACK THAT IS BEING CLICKED
         ItemStack is2 = event.getCursor(); // GETS CURRENT ITEMSTACK HELD ON MOUSE
 
-        assert is != null;
-        if (event.getClick() == ClickType.RIGHT && is.isSimilar(is2)) {
-            is.setAmount(is.getAmount() + 1);
-            is2.setAmount(is2.getAmount() - 1);
+        if(is == null){
+            event.setCancelled(false);
             return;
         }
 
-        event.setCancelled(true);
+
+
+
 
         Player p = (Player)(event.getView().getPlayer());
 
-        boolean compare = is.isSimilar(is2);
+        boolean sameItem = is.isSimilar(is2);
         ClickType type = event.getClick();
 
         int firstAmount = is.getAmount();
@@ -51,67 +53,49 @@ public class BrewPotionEvent implements Listener {
 
         int clickedSlot = event.getSlot();
 
-        if (type == ClickType.LEFT) {
+        if(!(event.getClick() == ClickType.RIGHT) && !(event.getClick() == ClickType.LEFT)){
+            return;
+        }
 
-            if (is.getType() == Material.AIR) {
+        if (type == ClickType.RIGHT) {
+            if(is.getType() == Material.AIR){
+                ItemStack placedItem = new ItemStack(is2);
+                placedItem.setAmount(1);
 
-                p.setItemOnCursor(is);
-                inv.setItem(clickedSlot, is2);
+                event.getClickedInventory().setItem(event.getSlot(), placedItem);
 
-            } else if (compare) {
-
-                int used = stack - firstAmount;
-                if (secondAmount <= used) {
-
-                    is.setAmount(firstAmount + secondAmount);
-                    p.setItemOnCursor(null);
-
-                } else {
-
-                    is2.setAmount(secondAmount - used);
-                    is.setAmount(firstAmount + used);
-                    p.setItemOnCursor(is2);
-
-                }
-
-            } else{
-
-                inv.setItem(clickedSlot, is2);
-                p.setItemOnCursor(is);
-
+                is2.setAmount(is2.getAmount() - 1);
             }
 
-        } else if (type == ClickType.RIGHT) {
-
-            if (is.getType() == Material.AIR) {
-
-                p.setItemOnCursor(is);
-                inv.setItem(clickedSlot, is2);
-
-            } else if (is.getType() != Material.AIR && is2.getType() == Material.AIR) {
-
-                ItemStack isClone = is.clone();
-                isClone.setAmount(is.getAmount() % 2 == 0 ? firstAmount - half : firstAmount - half - 1);
-                p.setItemOnCursor(isClone);
-
-                is.setAmount(firstAmount - half);
-
-            } else if (compare) {
-
-                if ((firstAmount + 1) <= stack) {
-
-                    is2.setAmount(secondAmount - 1);
-                    is.setAmount(firstAmount + 1);
-
+            if (sameItem){
+                if(is.getAmount() < stack && is2.getAmount() > 0){
+                    is.setAmount(is.getAmount() + 1);
+                    is2.setAmount(is2.getAmount() - 1);
                 }
-
-            } else {
-
-                inv.setItem(clickedSlot, is2);
-                p.setItemOnCursor(is);
             }
 
         }
+        if (type == ClickType.LEFT) {
+            if (is.getType() == Material.AIR) {
+                p.setItemOnCursor(is);
+                inv.setItem(clickedSlot, is2);
+            } else if (sameItem) {
+
+                int used = stack - firstAmount;
+                if (secondAmount <= used) {
+                    is.setAmount(firstAmount + secondAmount);
+                    p.setItemOnCursor(null);
+                } else {
+                    is2.setAmount(secondAmount - used);
+                    is.setAmount(firstAmount + used);
+                    p.setItemOnCursor(is2);
+                }
+            } else{
+                inv.setItem(clickedSlot, is2);
+                p.setItemOnCursor(is);
+            }
+        }
+
 
         if (((BrewerInventory) inv).getIngredient() == null) {
             return;
@@ -122,10 +106,7 @@ public class BrewPotionEvent implements Listener {
         if (recipe == null) {
             return;
         }
-        System.out.println("On lance le brew");
-
         recipe.startBrewing((BrewerInventory) inv);
-
     }
 
 }

@@ -31,8 +31,9 @@ public class BrewClock extends BukkitRunnable {
     @Override
     public void run() {
         if (current == 0) {
-            //System.out.println("termine");
-            // Set ingredient to 1 less than the current. Otherwise set to air
+
+            if(inventory.getIngredient() == null)
+                throw new NullPointerException("Ingredient is null");
             if (inventory.getIngredient().getAmount() > 1) {
                 ItemStack is = inventory.getIngredient();
                 is.setAmount(inventory.getIngredient().getAmount() - 1);
@@ -43,7 +44,6 @@ public class BrewClock extends BukkitRunnable {
             // Check the fuel in the recipe is more than 0, and exists
             ItemStack newFuel = recipe.getFuel();
 
-            //A fixer
 
             if (recipe.getFuel() != null && recipe.getFuel().getType() != Material.AIR &&
                     recipe.getFuel().getAmount() > 0) {
@@ -51,6 +51,9 @@ public class BrewClock extends BukkitRunnable {
                  * We count how much fuel should be taken away in order to fill
                  * the whole fuel bar
                  */
+                if(inventory.getFuel() == null)
+                    throw new NullPointerException("fuel is null");
+
                 int count = 0;
                 while (inventory.getFuel().getAmount() > 0 && stand.getFuelLevel() + recipe.getFuelCharge() < 100) {
                     stand.setFuelLevel(stand.getFuelLevel() + recipe.getFuelSet());
@@ -76,7 +79,8 @@ public class BrewClock extends BukkitRunnable {
 
 
             for (int i = 0; i < 3; i++) {
-                if (inventory.getItem(i) == null || inventory.getItem(i).getType() == Material.AIR) {
+                ItemStack item = inventory.getItem(i);
+                if (item == null || item.getType() == Material.AIR) {
                     continue;
                 }
                 recipe.getAction().brew(inventory);
@@ -120,7 +124,7 @@ public class BrewClock extends BukkitRunnable {
             if(before[i] == null && !(after[i] == null)) return true;
             if(!(before[i] == null) && after[i] == null) return true;
 
-            /*
+            /*a
             if (mode) {
                 if (!(before[i].isSimilar(after[i]))) {
                     continue;

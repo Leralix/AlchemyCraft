@@ -12,7 +12,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.drops.DropItem;
-import org.leralix.alchemycraft.drops.DropManager;
+import org.leralix.alchemycraft.Storage.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
 
 //@ItemData(name = "Zombie leg", base = Material.ROTTEN_FLESH, durability = 100, model_data = 101, version = 1)

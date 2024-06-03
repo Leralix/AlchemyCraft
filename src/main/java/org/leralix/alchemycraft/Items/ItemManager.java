@@ -1,6 +1,5 @@
 package org.leralix.alchemycraft.Items;
 
-import com.sun.security.auth.login.ConfigFile;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.Material;
@@ -21,7 +20,7 @@ import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 import org.leralix.alchemycraft.drops.DropItem;
-import org.leralix.alchemycraft.drops.DropManager;
+import org.leralix.alchemycraft.Storage.DropManager;
 import org.leralix.alchemycraft.interfaces.Craftable;
 import org.leralix.alchemycraft.interfaces.behavior.ConsumeBehavior;
 import org.leralix.alchemycraft.interfaces.behavior.OnConsume;
@@ -35,15 +34,12 @@ public class ItemManager {
     private static final Set<BrewingRecipe> brewItems = new HashSet<>();
 
 
-    public void registerItem(CustomItem item) {
+    public static void registerItem(CustomItem item) {
         items.put(item.getKey(),item);
-        if(item instanceof CustomItemBrew customItemBrew){
-            registerBrewing(customItemBrew.getBrewRecipe());
-        }
     }
 
 
-    public void registerBrewing(BrewingRecipe recipe) {
+    public static void registerBrewing(BrewingRecipe recipe) {
         brewItems.add(recipe);
     }
 
@@ -91,7 +87,7 @@ public class ItemManager {
     }
 
 
-    public void registerItems() {
+    public static void registerItems() {
 
         FileConfiguration configFile = ConfigUtil.getCustomConfig("items.yml");
         ConfigurationSection configurationSection = configFile.getConfigurationSection("custom_items");
@@ -130,43 +126,7 @@ public class ItemManager {
             // Process obtainable_by section
             ConfigurationSection obtainableBySection = itemSection.getConfigurationSection("obtainable_by");
             if (obtainableBySection != null) {
-                // Crafting Table
-                ConfigurationSection craftingTableSection = obtainableBySection.getConfigurationSection("crafting_table");
-                if (craftingTableSection != null) {
-                    ConfigurationSection recipeSection = craftingTableSection.getConfigurationSection("recipe");
-                    if (recipeSection == null) {
-                        throw new IllegalArgumentException("Recipe section is required for custom item: " + key);
-                    }
-                    ShapedRecipe recipe = new ShapedRecipe(new NamespacedKey(AlchemyCraft.getPlugin(), key + "_crafting"), customItemStack);
-                    List<String> recipeShape = recipeSection.getStringList("shape");
 
-                    if(recipeShape.size() != 3)
-                        throw new IllegalArgumentException("Invalid recipe shape for custom item: " + key);
-                    for(String shape : recipeShape){
-                        if(shape.length() != 3)
-                            throw new IllegalArgumentException("Invalid recipe shape for custom item: " + key);
-                    }
-
-                    recipe.shape(recipeShape.get(0), recipeShape.get(1), recipeShape.get(2));
-
-                    ConfigurationSection ingredientsSection = recipeSection.getConfigurationSection("ingredients");
-                    if (ingredientsSection == null) {
-                        throw new IllegalArgumentException("Ingredients section is required for custom item: " + key);
-                    }
-
-                    for (String ingredientKey : ingredientsSection.getKeys(false)) {
-                        String ingredient = ingredientsSection.getString(ingredientKey);
-                        if (ingredient == null)
-                            throw new IllegalArgumentException("Invalid ingredient for custom item: " + key);
-                        Material ingredientMaterial = Material.getMaterial(ingredient);
-                        if (ingredientMaterial == null)
-                            throw new IllegalArgumentException("Invalid ingredient material for custom item: " + key);
-
-                        recipe.setIngredient(ingredientKey.charAt(0), ingredientMaterial);
-                    }
-                    AlchemyCraft.getPlugin().getServer().addRecipe(recipe);
-
-                }
 
                 // Furnace
                 ConfigurationSection furnaceSection = obtainableBySection.getConfigurationSection("furnace");
@@ -190,40 +150,66 @@ public class ItemManager {
                     AlchemyCraft.getPlugin().getServer().addRecipe(recipe);
                 }
 
-                // Mob Drop
-                ConfigurationSection mobDropSection = obtainableBySection.getConfigurationSection("mob_drop");
-                if (mobDropSection != null) {
-                    EntityType mob = EntityType.valueOf(mobDropSection.getString("mob"));
-                    double drop_rate = mobDropSection.getDouble("drop_rate");
-                    int amount = mobDropSection.getInt("amount");
-                    DropManager.registerDrop(mob, new DropItem(customItemStack,drop_rate));
-                }
-
                 ConfigurationSection brewingSection = obtainableBySection.getConfigurationSection("brewing_stand");
                 if (brewingSection != null){
                     ConfigurationSection ReceipeSection = brewingSection.getConfigurationSection("recipe");
                     if(ReceipeSection == null)
                         throw new IllegalArgumentException("Recipe section is required for brewing recipe for custom item: " + key);
 
+                    String ingredientName = ReceipeSection.getString("ingredient");
+                    if(ingredientName == null)
+                        throw new IllegalArgumentException("Ingredient is required for brewing recipe for custom item: " + key);
+                    Material ingredientMaterial = Material.getMaterial(ingredientName);
+                    if(ingredientMaterial == null)
+                        throw new IllegalArgumentException("Invalid ingredient material for brewing recipe for custom item: " + key);
+                    ItemStack ingredient = new ItemStack(ingredientMaterial);
 
-                    ItemStack ingredient = new ItemStack(Material.getMaterial(ReceipeSection.getString("ingredient")));
-                    ItemStack fuel = new ItemStack(Material.getMaterial(ReceipeSection.getString("fuel")));
-                    ItemStack recipient = new ItemStack(Material.getMaterial(ReceipeSection.getString("recipient")));
-                    ItemStack ingredient_after = new ItemStack(Material.getMaterial(ReceipeSection.getString("ingredient_after_brewing")));
 
-                    BrewingRecipe brewingRecipe = new BrewingRecipe(ingredient,fuel,inventory -> {
+                    String fuelName = ReceipeSection.getString("fuel");
+                    if(fuelName == null)
+                        throw new IllegalArgumentException("Fuel is required for brewing recipe for custom item: " + key);
+                    Material fuelMaterial = Material.getMaterial(fuelName);
+                    if(fuelMaterial == null)
+                        throw new IllegalArgumentException("Invalid fuel material for brewing recipe for custom item: " + key);
+                    ItemStack fuel = new ItemStack(fuelMaterial);
+
+
+                    ItemStack recipient;
+                    String recipientName = ReceipeSection.getString("recipient");
+                    if(recipientName == null)
+                        recipient = new ItemStack(Material.AIR);
+                    Material recipientMaterial = Material.getMaterial(recipientName);
+                    if(recipientMaterial == null)
+                        throw new IllegalArgumentException("Invalid recipient material for brewing recipe for custom item: " + key);
+                    recipient = new ItemStack(recipientMaterial);
+
+                    ItemStack ingredient_after;
+                    String ingredient_after_brewing = ReceipeSection.getString("ingredient_after_brewing");
+                    if(ingredient_after_brewing == null)
+                        ingredient_after = new ItemStack(Material.AIR);
+                    else{
+                        Material ingredient_after_material = Material.getMaterial(ingredient_after_brewing);
+                        if(ingredient_after_material == null)
+                            throw new IllegalArgumentException("Invalid ingredient after brewing material for brewing recipe for custom item: " + key);
+                        ingredient_after = new ItemStack(ingredient_after_material);
+                    }
+
+
+                    ItemStack finalRecipient = recipient;
+                    BrewingRecipe brewingRecipe = new BrewingRecipe(ingredient,fuel, inventory -> {
                         inventory.setIngredient(ingredient_after);
-
                         for (int i = 0; i < 3; i++) {
                             ItemStack currentItem = inventory.getItem(i);
-                            if(currentItem == null && recipient == null) {
-                                inventory.setItem(i, customItemStack);
+                            if(currentItem == null || currentItem.getType() == Material.AIR){
+                                if(finalRecipient.getType() == Material.AIR){
+                                    inventory.setItem(i, customItemStack);
+                                }
+                                continue;
                             }
-                            if(currentItem.getType() == recipient.getType()){
+                            if(currentItem.getType() == finalRecipient.getType()){
                                 inventory.setItem(i,customItemStack);
                             }
                         }
-
                     },false,1,0);
                     registerBrewing(brewingRecipe);
                 }
@@ -261,7 +247,7 @@ public class ItemManager {
         pluginLogger.info("Custom items loaded successfully.");
     }
 
-    private ItemStack createCustomItemStack(@NotNull Material material, @NotNull String translatableName, Integer customModelData) {
+    private static ItemStack createCustomItemStack(@NotNull Material material, @NotNull String translatableName, Integer customModelData) {
         ItemStack itemStack = new ItemStack(material);
         Component name = Component.translatable(translatableName)
                 .style(style -> style.decoration(TextDecoration.ITALIC, false));

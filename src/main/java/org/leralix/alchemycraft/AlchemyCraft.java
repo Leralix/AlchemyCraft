@@ -6,18 +6,16 @@ import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ShapelessRecipe;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.leralix.alchemycraft.Items.CustomItemBrew;
-import org.leralix.alchemycraft.Items.Item.*;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Lang.Lang;
 import org.leralix.alchemycraft.Listeners.*;
+import org.leralix.alchemycraft.Storage.CraftManager;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.commands.DebugCommandManager;
-import org.leralix.alchemycraft.drops.DropManager;
+import org.leralix.alchemycraft.Storage.DropManager;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Logger;
 
 
@@ -46,10 +44,14 @@ public final class AlchemyCraft extends JavaPlugin {
 
         ConfigUtil.saveResource("items.yml");
         ConfigUtil.loadCustomConfig("items.yml");
+        ConfigUtil.saveResource("drops.yml");
+        ConfigUtil.loadCustomConfig("drops.yml");
+        ConfigUtil.saveResource("crafts.yml");
+        ConfigUtil.loadCustomConfig("crafts.yml");
+
 
         String lang = ConfigUtil.getCustomConfig("lang.yml").getString("language");
         Lang.loadTranslations(lang);
-        logger.info(Lang.LANGUAGE_SUCCESSFULLY_LOADED.getTranslation());
 
         logger.info("[Alc] -Loading Commands");
         getCommand("alchdebug").setExecutor(new DebugCommandManager());
@@ -57,10 +59,11 @@ public final class AlchemyCraft extends JavaPlugin {
 
         logger.info("[Alc] -Loading items, crafts & events");
 
-        itemManager = new ItemManager();
-        itemManager.registerItems();
+        ItemManager.registerItems();
+        DropManager.registerDrops();
+        CraftManager.registerCrafts();
+        CraftManager.registerFurnaceCraft();
 
-        //RegisterItems();
         RegisterEvents();
         giveALlRecipes();
 
@@ -94,45 +97,6 @@ public final class AlchemyCraft extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerConsumeItem(), this);
         getServer().getPluginManager().registerEvents(new PlayerEffectListener(), this);
     }
-
-    public void RegisterItems(){
-
-        itemManager.registerItem(new GoldenBeetroot());
-        itemManager.registerItem(new WatermelonJuice());
-
-        itemManager.registerItem(new UncookedPlate());
-        itemManager.registerItem(new Plate());
-        itemManager.registerItem(new ZombieLeg());
-
-        /*
-        itemManager.registerItem(new ZombieBroth());
-        itemManager.registerItem(new SkeletonFlesh());
-        itemManager.registerItem(new GolemHeart());
-        itemManager.registerItem(new PigTrotter());
-        itemManager.registerItem(new ZombieElixir());
-
-
-        itemManager.registerItem(new GrowthPowder());
-        itemManager.registerItem(new FungalExplosive());
-
-        CustomItemBrew _salt = new Salt();
-        itemManager.registerItem(_salt);
-        ItemManager.registerBrewing(_salt.getBrewRecipe());
-
-        CustomItemBrew _gunpowderExplosion = new GunpowderExplosion();
-        ItemManager.registerBrewing(_gunpowderExplosion.getBrewRecipe());
-
-        itemManager.registerItem(new GoldenSoup());
-        itemManager.registerItem(new ZombieGratin());
-
-        itemManager.registerItem(new CookedPigTrotter());
-
-        */
-
-        itemManager.applyRecipes(this);
-
-    }
-
     public static AlchemyCraft getPlugin() {
         return plugin;
     }

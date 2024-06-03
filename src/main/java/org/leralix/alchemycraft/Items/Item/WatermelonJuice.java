@@ -8,11 +8,10 @@ import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.*;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffectType;
-import org.leralix.alchemycraft.brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Items.CustomItemBrew;
+import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.interfaces.Consumable;
 
-public class WatermelonJuice extends CustomItemBrew implements Consumable {
+public class WatermelonJuice extends CustomItem implements Consumable {
 
 
     private static ItemStack getItem() {
@@ -34,21 +33,6 @@ public class WatermelonJuice extends CustomItemBrew implements Consumable {
     }
 
 
-    @Override
-    public void brew(BrewerInventory inventory) {
-
-    }
-
-    public BrewingRecipe getBrewRecipe() {
-        return new BrewingRecipe(new ItemStack(Material.MELON),new ItemStack(Material.BLAZE_POWDER), inventory -> {
-            for (int i = 0; i < 3; i++) {
-                ItemStack currentItem = inventory.getItem(i);
-                if(currentItem.getType() == Material.GLASS_BOTTLE){
-                    inventory.setItem(i,getItem());
-                }
-            }
-        },false,10,0);
-    }
 
     public void onConsume(Player player, PlayerItemConsumeEvent event) {
         event.setCancelled(true);

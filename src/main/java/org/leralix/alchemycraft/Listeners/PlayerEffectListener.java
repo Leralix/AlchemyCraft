@@ -15,22 +15,15 @@ public class PlayerEffectListener implements Listener {
 
     @EventHandler
     public void playerKillEntity(EntityDeathEvent event) {
-
         Entity deadEntity = event.getEntity();
         Player killer = event.getEntity().getKiller();
-
         if(killer == null)
             return;
 
         if(CustomEffectsManager.hasEffect(killer, CustomEffectKey.MIDAS_TOUCH)){
             killer.sendMessage(CustomEffectKey.MIDAS_TOUCH.getName());
-
             deadEntity.getLocation().getWorld().dropItemNaturally(deadEntity.getLocation(), new ItemStack(Material.GOLD_NUGGET, 3));
-
         }
 
-
     }
-
-
 }

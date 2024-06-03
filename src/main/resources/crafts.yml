@@ -1,0 +1,15 @@
+custom_crafts:
+  golden_beetroot:
+    see_recipe: true
+    result:
+      item: "alchemy:golden_beetroot"
+      count: 1
+    recipe:
+      shape:
+        - " A "
+        - "ABA"
+        - " A "
+      ingredients:
+        A: "minecraft:GOLD_NUGGET"
+        B: "minecraft:BEETROOT"
+

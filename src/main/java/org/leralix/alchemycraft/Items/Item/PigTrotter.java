@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.leralix.alchemycraft.interfaces.Consumable;
 import org.leralix.alchemycraft.drops.DropItem;
-import org.leralix.alchemycraft.drops.DropManager;
+import org.leralix.alchemycraft.Storage.DropManager;
 import org.leralix.alchemycraft.Items.CustomItem;
 
 public class PigTrotter extends CustomItem implements Consumable {

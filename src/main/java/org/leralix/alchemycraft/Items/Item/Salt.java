@@ -6,10 +6,10 @@ import org.bukkit.Material;
 import org.bukkit.inventory.BrewerInventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.leralix.alchemycraft.Items.CustomItem;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
-import org.leralix.alchemycraft.Items.CustomItemBrew;
 
-public class Salt extends CustomItemBrew {
+public class Salt extends CustomItem {
 
 
     private static ItemStack getItem() {
@@ -30,27 +30,5 @@ public class Salt extends CustomItemBrew {
         super("SALT", getItem());
     }
 
-
-    @Override
-    public void brew(BrewerInventory inventory) {
-
-    }
-
-    public BrewingRecipe getBrewRecipe() {
-        return new BrewingRecipe(new ItemStack(Material.WATER_BUCKET),new ItemStack(Material.COAL), inventory -> {
-
-            inventory.setIngredient(new ItemStack(Material.BUCKET));
-
-
-            for (int i = 0; i < 3; i++) {
-
-                ItemStack currentItem = inventory.getItem(i);
-
-                if(currentItem == null){
-                    inventory.setItem(i,getItem());
-                }
-            }
-        },false,10,0);
-    }
 
 }
