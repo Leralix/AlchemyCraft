@@ -48,7 +48,10 @@ public final class AlchemyCraft extends JavaPlugin {
         ConfigUtil.loadCustomConfig("drops.yml");
         ConfigUtil.saveResource("crafts.yml");
         ConfigUtil.loadCustomConfig("crafts.yml");
-
+        ConfigUtil.saveResource("furnace.yml");
+        ConfigUtil.loadCustomConfig("furnace.yml");
+        ConfigUtil.saveResource("brewing.yml");
+        ConfigUtil.loadCustomConfig("brewing.yml");
 
         String lang = ConfigUtil.getCustomConfig("lang.yml").getString("language");
         Lang.loadTranslations(lang);
@@ -63,6 +66,7 @@ public final class AlchemyCraft extends JavaPlugin {
         DropManager.registerDrops();
         CraftManager.registerCrafts();
         CraftManager.registerFurnaceCraft();
+        CraftManager.registerBrew();
 
         RegisterEvents();
         giveALlRecipes();

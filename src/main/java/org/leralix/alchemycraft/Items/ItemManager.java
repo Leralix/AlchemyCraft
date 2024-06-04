@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.jetbrains.annotations.NotNull;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
+import org.leralix.alchemycraft.Utils.MaterialUtil;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 import org.leralix.alchemycraft.drops.DropItem;
 import org.leralix.alchemycraft.Storage.DropManager;
@@ -123,98 +124,6 @@ public class ItemManager {
             ItemStack customItemStack = createCustomItemStack(material, displayName, customModelData);
             CustomItem customItem = new CustomItem(key, customItemStack);
 
-            // Process obtainable_by section
-            ConfigurationSection obtainableBySection = itemSection.getConfigurationSection("obtainable_by");
-            if (obtainableBySection != null) {
-
-
-                // Furnace
-                ConfigurationSection furnaceSection = obtainableBySection.getConfigurationSection("furnace");
-                if (furnaceSection != null) {
-                    ConfigurationSection recipeSection = furnaceSection.getConfigurationSection("recipe");
-                    if(recipeSection == null)
-                        throw new IllegalArgumentException("Recipe section is required for furnace recipe for custom item: " + key);
-
-                    String ingredientName = recipeSection.getString("ingredient");
-                    if(ingredientName == null)
-                        throw new IllegalArgumentException("Ingredient is required for furnace recipe for custom item: " + key);
-                    Material ingredient = Material.getMaterial(ingredientName);
-                    if(ingredient == null)
-                        throw new IllegalArgumentException("Invalid ingredient material for furnace recipe for custom item: " + key);
-
-                    ItemStack result = new ItemStack(customItemStack);
-                    float experience = (float) recipeSection.getDouble("experience");
-                    int burningDuration = recipeSection.getInt("burning_duration");
-
-                    FurnaceRecipe recipe = new FurnaceRecipe(new NamespacedKey(AlchemyCraft.getPlugin(), key + "_furnace"), result, ingredient, experience, burningDuration);
-                    AlchemyCraft.getPlugin().getServer().addRecipe(recipe);
-                }
-
-                ConfigurationSection brewingSection = obtainableBySection.getConfigurationSection("brewing_stand");
-                if (brewingSection != null){
-                    ConfigurationSection ReceipeSection = brewingSection.getConfigurationSection("recipe");
-                    if(ReceipeSection == null)
-                        throw new IllegalArgumentException("Recipe section is required for brewing recipe for custom item: " + key);
-
-                    String ingredientName = ReceipeSection.getString("ingredient");
-                    if(ingredientName == null)
-                        throw new IllegalArgumentException("Ingredient is required for brewing recipe for custom item: " + key);
-                    Material ingredientMaterial = Material.getMaterial(ingredientName);
-                    if(ingredientMaterial == null)
-                        throw new IllegalArgumentException("Invalid ingredient material for brewing recipe for custom item: " + key);
-                    ItemStack ingredient = new ItemStack(ingredientMaterial);
-
-
-                    String fuelName = ReceipeSection.getString("fuel");
-                    if(fuelName == null)
-                        throw new IllegalArgumentException("Fuel is required for brewing recipe for custom item: " + key);
-                    Material fuelMaterial = Material.getMaterial(fuelName);
-                    if(fuelMaterial == null)
-                        throw new IllegalArgumentException("Invalid fuel material for brewing recipe for custom item: " + key);
-                    ItemStack fuel = new ItemStack(fuelMaterial);
-
-
-                    ItemStack recipient;
-                    String recipientName = ReceipeSection.getString("recipient");
-                    if(recipientName == null)
-                        recipient = new ItemStack(Material.AIR);
-                    Material recipientMaterial = Material.getMaterial(recipientName);
-                    if(recipientMaterial == null)
-                        throw new IllegalArgumentException("Invalid recipient material for brewing recipe for custom item: " + key);
-                    recipient = new ItemStack(recipientMaterial);
-
-                    ItemStack ingredient_after;
-                    String ingredient_after_brewing = ReceipeSection.getString("ingredient_after_brewing");
-                    if(ingredient_after_brewing == null)
-                        ingredient_after = new ItemStack(Material.AIR);
-                    else{
-                        Material ingredient_after_material = Material.getMaterial(ingredient_after_brewing);
-                        if(ingredient_after_material == null)
-                            throw new IllegalArgumentException("Invalid ingredient after brewing material for brewing recipe for custom item: " + key);
-                        ingredient_after = new ItemStack(ingredient_after_material);
-                    }
-
-
-                    ItemStack finalRecipient = recipient;
-                    BrewingRecipe brewingRecipe = new BrewingRecipe(ingredient,fuel, inventory -> {
-                        inventory.setIngredient(ingredient_after);
-                        for (int i = 0; i < 3; i++) {
-                            ItemStack currentItem = inventory.getItem(i);
-                            if(currentItem == null || currentItem.getType() == Material.AIR){
-                                if(finalRecipient.getType() == Material.AIR){
-                                    inventory.setItem(i, customItemStack);
-                                }
-                                continue;
-                            }
-                            if(currentItem.getType() == finalRecipient.getType()){
-                                inventory.setItem(i,customItemStack);
-                            }
-                        }
-                    },false,1,0);
-                    registerBrewing(brewingRecipe);
-                }
-            }
-
             // Process consumable section
             ConfigurationSection consumableSection = itemSection.getConfigurationSection("consumable");
             if (consumableSection != null) {
@@ -235,13 +144,16 @@ public class ItemManager {
                 }
 
                 boolean removeOnConsume = consumableSection.getBoolean("remove_on_consume");
-                String itemGivenWhenConsumed = consumableSection.getString("give_item_on_consume.item_given_when_consumed");
+                String itemGivenWhenConsumed = consumableSection.getString("item_given_when_consumed");
+                ItemStack itemGivenWhenConsumedStack = null;
+                if (itemGivenWhenConsumed != null) {
+                    itemGivenWhenConsumedStack = MaterialUtil.getItem(itemGivenWhenConsumed, key);
+                }
 
-                customItem.addBehavior(OnConsume.class, new ConsumeBehavior(hunger, saturation, effects, removeOnConsume, itemGivenWhenConsumed));
+                customItem.addBehavior(OnConsume.class, new ConsumeBehavior(hunger, saturation, effects, removeOnConsume, itemGivenWhenConsumedStack));
             }
 
             registerItem(customItem);
-            System.out.printf("Registered custom item: %s%n", key);
         }
 
         pluginLogger.info("Custom items loaded successfully.");

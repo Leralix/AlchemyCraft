@@ -81,8 +81,11 @@ public class MaterialUtil {
     public static ItemStack getItem(String itemString, String key) {
 
 
-        ItemStack item;
+        if(!itemString.contains(":"))
+            throw new IllegalArgumentException("Invalid item for custom drop: " + key + " (use minecraft: or alchemy:)");
+
         String itemName = itemString.split(":")[1];
+        ItemStack item;
         if(itemString.startsWith("minecraft")) {
             Material material = Material.matchMaterial(itemName.toUpperCase());
             if (material == null)

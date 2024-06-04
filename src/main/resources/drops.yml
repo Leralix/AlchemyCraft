@@ -1,15 +1,9 @@
 custom_drops:
-  golden_beetroot:
-    item: "alchemy:golden_beetroot"
+  zombie_leg:
+    item: "alchemy:zombie_leg"
     mob: "ZOMBIE"
-    drop_rate: 0.9
+    drop_rate: 0.05
     amount: 1
-
-  golden_nugget:
-    item: "minecraft:GOLD_NUGGET"
-    mob: "ZOMBIE"
-    drop_rate: 1
-    amount: 2
 
 
 

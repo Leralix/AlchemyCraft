@@ -14,11 +14,11 @@ public class ConsumeBehavior implements OnConsume {
     private final int hunger;
     private final int saturation;
     private final boolean removeOnConsume;
-    private final String itemGivenWhenConsumed;
+    private final ItemStack itemGivenWhenConsumed;
     private final Collection<PotionEffect> effectOnConsume;
 
 
-    public ConsumeBehavior(int hunger, int saturation, Collection<PotionEffect> effectOnConsume, boolean removeOnConsume, String itemGivenWhenConsumed) {
+    public ConsumeBehavior(int hunger, int saturation, Collection<PotionEffect> effectOnConsume, boolean removeOnConsume, ItemStack itemGivenWhenConsumed) {
 
         this.hunger = hunger;
         this.saturation = saturation;
@@ -35,17 +35,16 @@ public class ConsumeBehavior implements OnConsume {
         if(saturation != 0)
             player.setSaturation(player.getSaturation() + saturation);
         if(removeOnConsume)
-            player.getInventory().remove(player.getInventory().getItemInMainHand());
+            if(player.getInventory().getItemInMainHand().getAmount() > 1)
+                player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
+            else
+                player.getInventory().remove(player.getInventory().getItemInMainHand());
+
         if(itemGivenWhenConsumed != null){
-            Material material = Material.getMaterial(itemGivenWhenConsumed);
-            if(material == null)
-                return;
-            ItemStack itemStack = new ItemStack(material);
-            player.getInventory().addItem(itemStack);
+            player.getInventory().addItem(itemGivenWhenConsumed);
         }
         for (PotionEffect effect : effectOnConsume) {
             player.addPotionEffect(effect);
         }
-        player.sendMessage("You consumed a custom item!");
     }
 }

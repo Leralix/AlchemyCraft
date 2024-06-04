@@ -1,0 +1,7 @@
+custom_brewing:
+  #watermelon_juice:
+  #    ingredient: "minecraft:MELON"
+  #    ingredient_after_brewing: "minecraft:AIR"
+  #    fuel: "minecraft:COAL"
+  #    recipient: "minecraft:GLASS_BOTTLE"
+  #    recipient_after_brewing: "alchemy:watermelon_juice"

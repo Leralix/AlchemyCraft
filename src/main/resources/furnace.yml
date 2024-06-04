@@ -1,0 +1,24 @@
+custom_smelting:
+  golden_beetroot:
+    see_recipe: true
+    recipe:
+      ingredient: "minecraft:BEETROOT"
+      result: "alchemy:golden_beetroot"
+      experience: 0.7
+      burning_duration: 200
+
+  cooked_plate:
+    see_recipe: true
+    recipe:
+      ingredient: "alchemy:raw_plate"
+      result: "alchemy:plate"
+      experience: 0.7
+      burning_duration: 1000
+
+  cooked_pig_trotter:
+    see_recipe: true
+    recipe:
+      ingredient: "alchemy:pig_trotter"
+      result: "alchemy:cooked_pig_trotter"
+      experience: 0.7
+      burning_duration: 200

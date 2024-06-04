@@ -1,4 +1,19 @@
 custom_crafts:
+
+  raw_plate:
+    see_recipe: true
+    result:
+      item: "alchemy:raw_plate"
+      count: 1
+    recipe:
+      shape:
+        - "   "
+        - "A A"
+        - "AAA"
+      ingredients:
+        A: "minecraft:CLAY_BALL"
+
+
   golden_beetroot:
     see_recipe: true
     result:

@@ -1,42 +1,75 @@
 custom_items:
+
+  cooked_pig_trotter:
+    display_name: "alchemy_craft.item.cooked_pig_trotter"
+    material: "COOKED_PORKCHOP"
+    custom_model_data: 5413
+    consumable:
+      saturation: 6
+      hunger: 4
+      remove_on_consume: true
+
   golden_beetroot:
     display_name: "alchemy_craft.item.golden_beetroot"
     material: "BEETROOT"
     custom_model_data: 5401
-    lore:
-      - "alchemy_craft.item.golden_beetroot.lore"
-      - "alchemy_craft.item.golden_beetroot.lore2"
-
     consumable:
-      saturation: 1
-      hunger: 1
+      saturation: 2
+      hunger: 4
       effects:
         - type: "REGENERATION"
-          duration: 10
+          duration: 5
           amplifier: 1
-        - type: "SATURATION"
-          duration: 3
-          amplifier: 3
       remove_on_consume: true
-      give_item_on_consume:
-        item_given_when_consumed: "BEETROOT"
+      item_given_when_consumed: "minecraft:BEETROOT"
 
+  pig_trotter:
+    display_name: "alchemy_craft.item.pig_trotter"
+    material: "PORKCHOP"
+    custom_model_data: 5408
+    consumable:
+      saturation: 4
+      hunger: 6
+      remove_on_consume: true
 
+  plate:
+    display_name: "alchemy_craft.item.plate"
+    material: "BOWL"
+    custom_model_data: 5417
 
-    obtainable_by:
-      furnace:
-        see_recipe: true
-        recipe:
-          ingredient: "BEETROOT"
-          result: "GOLDEN_BEETROOT"
-          experience: 0.7
-          burning_duration: 200
-      brewing_stand:
-        recipe:
-          ingredient: "GOLD_INGOT"
-          ingredient_after_brewing: "GOLD_NUGGET"
-          fuel: "COAL"
-          recipient: "BEETROOT"
+  raw_plate:
+    display_name: "alchemy_craft.item.uncooked_plate"
+    material: "BOWL"
+    custom_model_data: 5416
 
+  watermelon_juice:
+    display_name: "alchemy_craft.item.watermelon_juice"
+    material: "SUSPICIOUS_STEW"
+    custom_model_data: 5404
+    consumable:
+      saturation: 1
+      hunger: 2
+      effects:
+        - type: "SPEED"
+          duration: 5
+          amplifier: 1
+      remove_on_consume: true
 
-
+  zombie_leg:
+    display_name: "alchemy_craft.item.zombie_leg"
+    material: "ROTTEN_FLESH"
+    custom_model_data: 5402
+    consumable:
+      saturation: 3
+      hunger: 4
+      effects:
+        - type: "SLOW"
+          duration: 5
+          amplifier: 3
+        - type: "BLINDNESS"
+          duration: 5
+          amplifier: 2
+        - type: "CONFUSION"
+          duration: 5
+          amplifier: 15
+      remove_on_consume: true
