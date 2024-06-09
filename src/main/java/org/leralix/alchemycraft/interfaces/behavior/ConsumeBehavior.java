@@ -5,6 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.ItemManager;
 
 import java.util.Collection;
@@ -19,7 +20,6 @@ public class ConsumeBehavior implements OnConsume {
 
 
     public ConsumeBehavior(int hunger, int saturation, Collection<PotionEffect> effectOnConsume, boolean removeOnConsume, ItemStack itemGivenWhenConsumed) {
-
         this.hunger = hunger;
         this.saturation = saturation;
         this.removeOnConsume = removeOnConsume;
@@ -30,15 +30,27 @@ public class ConsumeBehavior implements OnConsume {
     @Override
     public void onConsume(Player player) {
 
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
+        int mainHandSlot = player.getInventory().getHeldItemSlot();
+
         if(hunger != 0)
             player.setFoodLevel(player.getFoodLevel() + hunger);
         if(saturation != 0)
             player.setSaturation(player.getSaturation() + saturation);
-        if(removeOnConsume)
-            if(player.getInventory().getItemInMainHand().getAmount() > 1)
-                player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
-            else
-                player.getInventory().remove(player.getInventory().getItemInMainHand());
+
+
+
+        if (removeOnConsume) {
+            int newAmount = itemInHand.getAmount() - 1;
+            if (newAmount > 0) {
+                itemInHand.setAmount(newAmount);
+            } if (newAmount > 0) {
+                itemInHand.setAmount(newAmount);
+            } else {
+                player.getInventory().setItem(mainHandSlot, null);
+            }
+        }
+
 
         if(itemGivenWhenConsumed != null){
             player.getInventory().addItem(itemGivenWhenConsumed);

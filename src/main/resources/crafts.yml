@@ -28,3 +28,32 @@ custom_crafts:
         A: "minecraft:GOLD_NUGGET"
         B: "minecraft:BEETROOT"
 
+  rock_salad:
+    see_recipe: true
+    result:
+      item: "alchemy:rock_salad"
+      count: 1
+    recipe:
+      shape:
+        - "ABC"
+        - " D "
+        - "   "
+      ingredients:
+        A: "minecraft:GRANITE"
+        B: "minecraft:ANDESITE"
+        C: "minecraft:DIORITE"
+        D: "alchemy:plate"
+
+  slime_pudding:
+    see_recipe: true
+    result:
+      item: "alchemy:slime_pudding"
+      count: 4
+    recipe:
+      shape:
+        - " A "
+        - "ABA"
+        - " A "
+      ingredients:
+        A: "minecraft:SLIME_BALL"
+        B: "minecraft:SUGAR"

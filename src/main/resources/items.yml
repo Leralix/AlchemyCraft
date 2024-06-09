@@ -21,7 +21,6 @@ custom_items:
           duration: 5
           amplifier: 1
       remove_on_consume: true
-      item_given_when_consumed: "minecraft:BEETROOT"
 
   pig_trotter:
     display_name: "alchemy_craft.item.pig_trotter"
@@ -72,4 +71,27 @@ custom_items:
         - type: "CONFUSION"
           duration: 5
           amplifier: 15
+      remove_on_consume: true
+
+  rock_salad:
+    display_name: "alchemy_craft.item.rock_salad"
+    material: "SUSPICIOUS_STEW"
+    custom_model_data: 5418
+    consumable:
+      saturation: 5
+      hunger: 2
+      effects:
+        - type: "SLOW"
+          duration: 5
+          amplifier: 3
+      remove_on_consume: true
+      item_given_when_consumed: "alchemy:plate"
+
+  slime_pudding:
+    display_name: "alchemy_craft.item.slime_pudding"
+    material: "BREAD"
+    custom_model_data: 5419
+    consumable:
+      saturation: 4
+      hunger: 4
       remove_on_consume: true
