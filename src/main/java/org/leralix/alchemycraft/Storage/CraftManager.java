@@ -8,13 +8,17 @@ import org.bukkit.inventory.FurnaceRecipe;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.RecipeChoice;
 import org.bukkit.inventory.ShapedRecipe;
+import org.checkerframework.checker.units.qual.A;
 import org.leralix.alchemycraft.AlchemyCraft;
 import org.leralix.alchemycraft.Items.ItemManager;
 import org.leralix.alchemycraft.Utils.ConfigUtil;
 import org.leralix.alchemycraft.Utils.MaterialUtil;
 import org.leralix.alchemycraft.brewing.BrewingRecipe;
 
+import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.List;
+import java.util.Map;
 
 import static org.leralix.alchemycraft.Items.ItemManager.registerBrewing;
 
@@ -156,34 +160,68 @@ public class CraftManager {
             ItemStack fuel = MaterialUtil.getItem(fuelName, key);
 
 
-            ItemStack recipient;
-            String recipientName = recipeConfig.getString("recipient");
-            if(recipientName == null)
-                recipient = new ItemStack(Material.AIR);
-            else {
-                recipient = MaterialUtil.getItem(recipientName, key);
-            }
+            List<Map<String,String>> recipients = (List<Map<String,String>>) recipeConfig.getList("recipients");
 
-            ItemStack recipientAfter;
-            String recipientAfterName = recipeConfig.getString("recipient_after_brewing");
-            if(recipientAfterName == null)
-                recipientAfter = new ItemStack(Material.AIR);
-            else{
-                recipientAfter = MaterialUtil.getItem(recipientAfterName, key);
+            if(recipients == null)
+                throw new IllegalArgumentException("Recipients are required for brewing recipe for custom item: " + key);
+
+            ArrayList<ItemStack> recipientList = new ArrayList<>();
+            ArrayList<ItemStack> recipientAfterList = new ArrayList<>();
+
+            for(Map<String,String> recipient : recipients){
+                if(recipient.size() != 2)
+                    throw new IllegalArgumentException("Invalid recipient for custom item: " + key);
+                String recipientName = recipient.get("recipient");
+                if(recipientName == null)
+                    throw new IllegalArgumentException("Recipient name is required for brewing recipe for custom item: " + key);
+                recipientList.add(MaterialUtil.getItem(recipientName, key));
+
+                String recipientAfterName = recipient.get("recipient_after_brewing");
+                if(recipientAfterName == null)
+                    throw new IllegalArgumentException("Recipient after name is required for brewing recipe for custom item: " + key);
+                recipientAfterList.add(MaterialUtil.getItem(recipientAfterName, key));
             }
 
 
             BrewingRecipe brewingRecipe = new BrewingRecipe(ingredient,fuel, inventory -> {
 
-                inventory.setIngredient(ingredientAfterBrewing);
-                for (int i = 0; i < 3; i++) {
-                    ItemStack currentItem = inventory.getItem(i);
-                    if(currentItem == null)
-                        continue;
-                    if(currentItem.getType() == recipient.getType()){
-                        inventory.setItem(i,recipientAfter);
+
+                if(ingredientAfterBrewing.getType() == Material.AIR){
+                    ItemStack currentIngredient = inventory.getIngredient();
+                    if(currentIngredient == null)
+                        throw new NullPointerException("Ingredient is null");
+                    else if (currentIngredient.getAmount() > 1) {
+                        System.out.println("Amount ingredient: " + currentIngredient.getAmount());
+                        currentIngredient.setAmount(currentIngredient.getAmount() - 1);
+                        inventory.setIngredient(currentIngredient);
+                        System.out.println("set ingredient: " + inventory.getIngredient().getAmount() + " " + currentIngredient.getAmount());
+                    } else {
+                        inventory.setIngredient(ingredientAfterBrewing);
                     }
                 }
+                else
+                    inventory.setIngredient(ingredientAfterBrewing);
+
+
+
+
+                for (int i = 0; i < 3; i++) {
+                    ItemStack currentItem = inventory.getItem(i);
+
+                    if (currentItem != null) {
+                        for (int j = 0; j < recipients.size(); j++) {
+                            ItemStack recipient = recipientList.get(j);
+                            ItemStack recipientAfter = recipientAfterList.get(j);
+                            if (currentItem.getType() == recipient.getType()) {
+                                inventory.setItem(i, recipientAfter);
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+
             },false,1,0);
             registerBrewing(brewingRecipe);
             AlchemyCraft.getPluginLogger().info("Registered brew: " + key);

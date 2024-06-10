@@ -1,7 +1,20 @@
 custom_brewing:
-  #watermelon_juice:
-  #    ingredient: "minecraft:MELON"
-  #    ingredient_after_brewing: "minecraft:AIR"
-  #    fuel: "minecraft:COAL"
-  #    recipient: "minecraft:GLASS_BOTTLE"
-  #    recipient_after_brewing: "alchemy:watermelon_juice"
+  watermelon_juice:
+      ingredient: "minecraft:MELON"
+      ingredient_after_brewing: "minecraft:AIR"
+      fuel: "minecraft:COAL"
+      recipients:
+        - recipient: "minecraft:GLASS_BOTTLE"
+          recipient_after_brewing: "alchemy:watermelon_juice"
+
+  gold_alchemy:
+    ingredient: "minecraft:GOLD_INGOT"
+    ingredient_after_brewing: "minecraft:AIR"
+    fuel: "minecraft:BLAZE_POWDER"
+    recipients:
+      - recipient: "minecraft:CARROT"
+        recipient_after_brewing: "minecraft:GOLDEN_CARROT"
+      - recipient: "minecraft:APPLE"
+        recipient_after_brewing: "minecraft:GOLDEN_APPLE"
+      - recipient: "minecraft:BEETROOT"
+        recipient_after_brewing: "alchemy:golden_beetroot"
