@@ -16,11 +16,6 @@ public class PlayerConsumeItem implements Listener {
     public void onPlayerConsume(PlayerItemConsumeEvent event) {
         ItemStack item = event.getItem();
         Player player = event.getPlayer();
-        handleItemConsumption(player, item, event);
-    }
-
-    public void handleItemConsumption(Player player, ItemStack item, PlayerItemConsumeEvent event) {
-
 
         CustomItem customItem = ItemManager.get(item);
 
@@ -31,7 +26,8 @@ public class PlayerConsumeItem implements Listener {
         if (consumeBehavior == null)
             return;
         event.setCancelled(true);
-        consumeBehavior.onConsume(player);
+
+        consumeBehavior.onConsume(player, event.getHand());
     }
 
 }

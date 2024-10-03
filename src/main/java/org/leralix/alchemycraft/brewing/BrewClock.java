@@ -55,7 +55,7 @@ public class BrewClock extends BukkitRunnable {
 
 
 
-        /*
+
         ItemStack newFuel = recipe.getFuel();
         if (recipe.getFuel() != null
                 && recipe.getFuel().getType() != Material.AIR
@@ -81,7 +81,6 @@ public class BrewClock extends BukkitRunnable {
         }
         inventory.setFuel(newFuel);
 
-         */
 
         recipe.getAction().brew(inventory);
 
